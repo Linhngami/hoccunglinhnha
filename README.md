@@ -1,17 +1,22 @@
-# Học Tiếng Anh Cùng Linh Nha
+# Linh's English Garden 🌷
 
-Website học từ vựng tiếng Anh giao diện tiếng Việt, thiết kế responsive cho máy tính và điện thoại.
+Website học tiếng Anh cá nhân theo phong cách pastel Nhật Bản nhẹ nhàng: hồng pastel, lavender, mint và kem sữa.
 
-## Cách chạy
-- Mở `index.html` bằng trình duyệt, hoặc đưa toàn bộ nội dung repository lên một dịch vụ host website tĩnh.
-- Không cần cài đặt package hay chạy lệnh build.
+## Chạy website
+- Mở `index.html` trực tiếp bằng trình duyệt, hoặc tải hai file lên thư mục gốc GitHub repository và triển khai bằng Vibe Host.
+- Website không cần build step.
 
-## Tính năng hiện có
-- Trang chủ và thống kê học tập.
-- Thêm, sửa, xóa, tìm kiếm và lọc từ vựng.
-- Lưu nghĩa tiếng Việt, câu ví dụ và chủ đề.
-- Flashcards và quiz trắc nghiệm.
-- Lưu dữ liệu trong `localStorage` của trình duyệt hiện tại.
+## Tính năng
+- Trang chủ cá nhân hóa với lời chào “Hi, mình là Linh”.
+- Word of the Day.
+- Thư viện từ vựng có tìm kiếm, lọc theo Unit và thêm từ.
+- Flashcards, đánh dấu từ đã thuộc, quiz.
+- Góc ghi chú lưu trên trình duyệt.
+- Thống kê số từ, số từ đã thuộc và chuỗi ngày học.
 
-## Lưu ý quan trọng
-Đây là bản MVP giao diện chạy được ngay. Dữ liệu đang lưu trong trình duyệt của từng thiết bị, chưa có tài khoản đăng nhập thật, cơ sở dữ liệu dùng chung hoặc ngân hàng từ vựng giữa nhiều người dùng. Để triển khai các chức năng đó, cần kết nối backend/database (ví dụ Supabase) và cấu hình bảo mật phù hợp.
+## Về bộ từ vựng
+Có sẵn bộ từ mẫu dựa trên các từ Unit 1–4 mà Linh cung cấp trong yêu cầu. Đây chưa phải toàn bộ nội dung của hai tài liệu Skillful 4; cần nhập/đối chiếu thêm từ các tài liệu gốc để mở rộng chính xác.
+
+## Dữ liệu và avatar
+- Dữ liệu hiện lưu bằng `localStorage` trên trình duyệt đang dùng. Chưa có tài khoản đăng nhập, đồng bộ nhiều thiết bị hay ngân hàng từ dùng chung.
+- Avatar hiện là hình minh họa hoa pastel vì chưa có ảnh chân dung được cung cấp. Có thể thay bằng ảnh riêng sau này.
