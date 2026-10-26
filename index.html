@@ -1,145 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Linh's English Garden 🌷</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fff8fb">
+<title>Học Tiếng Anh Cùng Linh Nha 🌷</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap');
-:root{--pink:#f8dce7;--pink2:#fff0f5;--lav:#e9e4fb;--lav2:#8274bd;--mint:#dff3e9;--mint2:#5c9e82;--cream:#fffaf0;--ink:#4c4860;--muted:#89849a;--white:#fff;--line:#eee8f0;--shadow:0 14px 36px #81749c12}
-*{box-sizing:border-box}body{margin:0;background:#fffcfa;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:14px}button,input,textarea,select{font:inherit}button{cursor:pointer;transition:.2s}button:hover{transform:translateY(-1px)}.shell{max-width:1250px;margin:auto;padding:0 25px}
-header{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #f1eaf0;background:#fffcfaeF;position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);padding:0 max(25px,calc((100vw - 1200px)/2))}
-.brand{display:flex;align-items:center;gap:11px;font-family:'Quicksand',sans-serif;font-weight:700;font-size:18px}.brandmark{width:43px;height:43px;border-radius:50% 50% 45% 45%;background:var(--lav);display:grid;place-items:center;font-size:24px}.brand small{display:block;font-size:10px;letter-spacing:2px;color:#a69bbb;font-weight:700;margin-top:2px}
-nav{display:flex;gap:4px;align-items:center}nav button{border:0;background:transparent;padding:10px 13px;border-radius:20px;color:#8b859b;font-weight:700}nav button.active,nav button:hover{background:#f0ebfb;color:#7869ae}.header-right{display:flex;align-items:center;gap:10px}.date-chip{font-size:12px;color:#9990a5;background:#fff;border:1px solid var(--line);border-radius:18px;padding:9px 12px}.avatar{width:39px;height:39px;border-radius:50%;background:var(--pink);border:2px solid white;box-shadow:0 0 0 1px #f0d6e2;display:grid;place-items:center;font-size:21px}
-.page{display:none;padding:31px 0 48px}.page.active{display:block}.welcome{display:grid;grid-template-columns:1.4fr .6fr;gap:24px;align-items:center;background:linear-gradient(120deg,#fff0f4,#f1edff 58%,#e8f7ef);border:1px solid #f2e9f3;border-radius:30px;padding:36px 42px;position:relative;overflow:hidden;min-height:265px}.welcome:after{content:"✿";position:absolute;font-size:130px;color:#ffffff70;right:23%;top:-37px;transform:rotate(22deg)}.hand{font-family:'Quicksand',sans-serif;color:#a18bb5;font-size:14px;font-weight:700;letter-spacing:.4px}.welcome h1{font-family:'Quicksand',sans-serif;font-size:clamp(32px,4vw,47px);line-height:1.13;margin:12px 0;color:#514b68}.welcome h1 span{color:#bd7d9b;font-style:italic}.welcome p{font-size:15px;line-height:1.85;color:#81798f;max-width:520px;margin:0 0 21px}.welcome-art{position:relative;z-index:1;display:flex;justify-content:center;align-items:center}.garden-illustration{width:210px;height:190px;border-radius:48% 52% 45% 55%;background:#ffffff75;display:flex;justify-content:center;align-items:center;flex-direction:column;transform:rotate(3deg);border:1px dashed #d7cde7}.garden-illustration .flower{font-size:77px;line-height:1}.garden-illustration span{font-family:'Quicksand';font-weight:700;color:#9685b4;margin-top:12px}
-.btn{border:0;border-radius:14px;padding:12px 17px;font-weight:700}.btn-lav{background:#8f80bf;color:white;box-shadow:0 6px 15px #8f80bf24}.btn-soft{background:#fff;color:#8778b1;border:1px solid #e8dff3}.btn-mint{background:#dff3e9;color:#4c8a71}.section-head{display:flex;justify-content:space-between;align-items:end;margin:29px 0 14px}.section-head h2{font-family:'Quicksand';font-size:21px;margin:0}.section-head p{color:#9a93a5;margin:5px 0 0}.tiny-link{background:transparent;border:0;color:#9b88bd;font-weight:700}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:19px}.stat{background:#fff;border:1px solid var(--line);border-radius:20px;padding:17px 19px;display:flex;align-items:center;gap:14px;box-shadow:var(--shadow)}.stat-icon{width:47px;height:47px;border-radius:16px;display:grid;place-items:center;font-size:23px}.stat:nth-child(1) .stat-icon{background:#fff0f5}.stat:nth-child(2) .stat-icon{background:#eae5fb}.stat:nth-child(3) .stat-icon{background:#e5f6ed}.stat strong{font-family:'Quicksand';font-size:25px;display:block}.stat span{font-size:12px;color:#a19aac}
-.home-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:17px;margin-top:18px}.panel{background:white;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.panel h3{font-family:'Quicksand';font-size:18px;margin:0 0 6px}.muted{color:#a09aaa;font-size:12px;line-height:1.7}.word-of-day{background:linear-gradient(130deg,#f1edff,#fff1f6);border-radius:18px;padding:18px;margin-top:14px}.wod-top{display:flex;justify-content:space-between;align-items:center}.pill{font-size:10px;font-weight:800;letter-spacing:.7px;background:#fff9;color:#9c85b2;border-radius:20px;padding:6px 9px;text-transform:uppercase}.wod-word{font-family:'Quicksand';font-size:29px;font-weight:700;margin:14px 0 4px;color:#5a5274}.wod-type{font-style:italic;color:#9b8caf;font-size:12px}.wod-meaning{margin:10px 0;color:#6e667e;font-size:14px}.wod-example{font-size:12px;color:#958ca0;font-style:italic;line-height:1.7}.vocab-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #f4eff4}.vocab-row:last-child{border-bottom:0}.vocab-row strong{font-family:'Quicksand';font-size:15px}.vocab-row small{display:block;color:#a19aaa;margin-top:4px}.unit-tag{font-size:10px;padding:5px 8px;border-radius:10px;background:#e7f5ed;color:#679781;white-space:nowrap}
-.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.tool-card{border-radius:22px;padding:22px;background:white;border:1px solid var(--line);box-shadow:var(--shadow)}.tool-card .tool-icon{width:52px;height:52px;border-radius:17px;display:grid;place-items:center;font-size:26px;margin-bottom:14px}.tool-card:nth-child(1) .tool-icon{background:#fff0f5}.tool-card:nth-child(2) .tool-icon{background:#efebfc}.tool-card:nth-child(3) .tool-icon{background:#e6f7ed}.tool-card h3{font-family:'Quicksand';font-size:17px;margin:0 0 8px}.tool-card p{color:#9992a3;font-size:12px;line-height:1.7;min-height:40px}.tool-card button{margin-top:8px}
-.page-title{font-family:'Quicksand';font-size:30px;margin:3px 0 7px}.page-desc{color:#9a93a5;margin:0 0 22px;line-height:1.7}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:17px}.toolbar input,.toolbar select,.field input,.field textarea,.field select{border:1px solid #e9e2ed;border-radius:13px;background:white;padding:12px 14px;color:var(--ink);outline:none}.toolbar input{flex:1;min-width:220px}.toolbar select{min-width:145px}.unit-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 17px}.unit-tabs button{border:1px solid #eee5f0;background:#fff;color:#93889e;border-radius:20px;padding:8px 13px;font-size:12px;font-weight:700}.unit-tabs button.active{background:#eae5fb;color:#7b6cae;border-color:#eae5fb}.vocab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.vocab-card{background:#fff;border:1px solid var(--line);border-radius:19px;padding:18px;position:relative}.vocab-card h3{font-family:'Quicksand';font-size:20px;margin:0 0 5px}.pos{font-size:11px;color:#b08fa6;font-style:italic}.meaning{font-size:13px;margin:11px 0 8px;color:#6f687e}.example{font-size:12px;line-height:1.6;color:#a09aaa;font-style:italic;min-height:36px}.card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid #f5eff4}.icon-btn{border:0;background:#f4effb;color:#8976b2;border-radius:10px;padding:7px 9px}.empty{grid-column:1/-1;background:#fff;border:1px dashed #dfd5e5;border-radius:18px;padding:35px;text-align:center;color:#9c93a6}
-.notes-layout{display:grid;grid-template-columns:.8fr 1.2fr;gap:17px}.field{margin:12px 0}.field label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;color:#777086}.field input,.field textarea,.field select{width:100%}.note{padding:14px;border:1px solid #f0e7ef;border-radius:15px;margin-top:10px;background:#fffdfd}.note strong{font-family:'Quicksand';font-size:14px}.note p{color:#8e8799;line-height:1.6;margin:7px 0}.note small{color:#b4aaba}.note .delete{float:right;background:#fff0f4;color:#c57c97;border:0;border-radius:9px;padding:5px 8px}
-.flash-wrap{max-width:620px;margin:0 auto;text-align:center}.flash-card{min-height:290px;border-radius:30px;padding:30px;display:flex;flex-direction:column;justify-content:center;align-items:center;background:linear-gradient(140deg,#f1eafb,#fff0f5 70%,#e8f7ef);border:1px solid #eee3f0;cursor:pointer;box-shadow:var(--shadow)}.flash-card .label{font-size:10px;letter-spacing:2px;color:#aa9bbb;font-weight:800}.flash-card h2{font-family:'Quicksand';font-size:40px;margin:20px 0 7px}.flash-card p{color:#8e849b;font-size:15px}.flash-controls{display:flex;gap:9px;justify-content:center;margin:17px 0}.quiz-box{max-width:680px;margin:auto;text-align:center}.quiz-word{font-family:'Quicksand';font-size:39px;margin:20px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:22px 0}.answers button{border:1px solid #eee5f0;background:#fff;border-radius:15px;padding:15px;color:#6d667c;font-weight:700}.answers button:hover{background:#f4f0fc;border-color:#d9ccef}.progress{height:7px;background:#f1ebf2;border-radius:9px;overflow:hidden;margin:15px 0}.progress div{height:100%;width:0;background:linear-gradient(90deg,#c6a5d8,#edb5c9);border-radius:9px}
-footer{text-align:center;padding:30px 0 38px;color:#b0a7b7;font-family:'Quicksand';font-size:12px}.modal-bg{display:none;position:fixed;inset:0;z-index:30;background:#49415c55;align-items:center;justify-content:center;padding:18px}.modal-bg.show{display:flex}.modal{background:#fffafc;border-radius:24px;padding:24px;width:min(480px,100%);box-shadow:0 25px 80px #49415c30}.modal h2{font-family:'Quicksand';margin:0 0 6px}.modal p{color:#9a91a2;font-size:12px}.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}
-@media(max-width:850px){header{padding:12px 18px;height:auto;flex-wrap:wrap;gap:10px}.brand{font-size:15px}nav{order:3;width:100%;overflow:auto}nav button{white-space:nowrap;padding:9px 11px}.date-chip{display:none}.shell{padding:0 15px}.welcome{grid-template-columns:1fr;padding:27px 24px}.welcome-art{display:none}.welcome:after{right:-5px}.stats{gap:8px}.stat{padding:12px;gap:8px}.stat-icon{width:36px;height:36px;font-size:18px}.stat strong{font-size:21px}.stat span{font-size:10px}.home-grid,.notes-layout{grid-template-columns:1fr}.tool-grid{grid-template-columns:1fr}.vocab-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:520px){.vocab-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.stat{padding:13px 16px}.answers{grid-template-columns:1fr}.welcome h1{font-size:34px}.page-title{font-size:26px}.section-head{align-items:start;gap:10px}.panel{padding:17px}}
+:root{--pink:#f178a5;--pink2:#ffe5ef;--blue:#31599c;--ink:#29324b;--muted:#6f7890;--yellow:#fff0a8;--mint:#e0f6ee;--paper:#fffdfd;--line:#f1dce6;--shadow:0 12px 35px #7c527315}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#fff8fb,#f7fbff 55%,#fffaf0);font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);line-height:1.55}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:13px;padding:11px 16px;font-weight:700;transition:.18s}button:hover{transform:translateY(-1px);filter:brightness(.99)}button:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.primary{background:var(--pink);color:white;box-shadow:0 5px 14px #f178a52c}.secondary{background:#edf3ff;color:var(--blue)}.soft{background:#fff0f5;color:#b84d79}.danger{background:#fff0ef;color:#b64040}.tiny{padding:7px 10px;font-size:.88rem}
+header{max-width:1200px;margin:auto;padding:20px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:10px;font-size:1.1rem;font-weight:850;color:var(--blue)}.brand-icon{display:grid;place-items:center;width:44px;height:44px;background:#ffe3ed;border-radius:15px;font-size:1.5rem}.nav{display:flex;gap:8px;flex-wrap:wrap}.nav button{background:transparent;color:#56617a;padding:9px 12px}.nav button.active{background:white;color:var(--blue);box-shadow:var(--shadow)}
+main{max-width:1200px;margin:auto;padding:8px 22px 60px}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:26px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:28px;padding:26px;box-shadow:var(--shadow);overflow:hidden}.eyebrow{display:inline-block;background:var(--mint);color:#317866;border-radius:99px;padding:6px 12px;font-size:.86rem;font-weight:750}.hero h1{font-size:clamp(2rem,4vw,3.5rem);line-height:1.1;letter-spacing:-1.4px;margin:17px 0 14px;color:#31599c}.hero h1 span{color:var(--pink)}.hero p{color:var(--muted);max-width:560px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.hero-img{width:100%;max-height:480px;object-fit:cover;object-position:center;border-radius:22px;display:block}.mini-note{font-size:.88rem;color:#758098;margin-top:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:20px 0}.stat,.panel,.feature{background:white;border:1px solid var(--line);border-radius:20px;padding:18px;box-shadow:var(--shadow)}.stat strong{display:block;font-size:1.65rem;color:var(--blue)}.stat span{font-size:.9rem;color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:14px;margin:30px 0 14px}.section-head h2{margin:0;color:var(--blue);font-size:1.5rem}.section-head p{margin:4px 0 0;color:var(--muted);font-size:.94rem}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.feature .emoji{font-size:1.8rem}.feature h3{margin:8px 0 4px}.feature p{color:var(--muted);font-size:.93rem;margin:0}
+.view{display:none}.view.active{display:block}.grid2{display:grid;grid-template-columns: minmax(0,1fr) minmax(0,1fr);gap:18px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:.9rem;font-weight:750;color:#59627b}.field input,.field select,.field textarea,.searchbox{width:100%;padding:11px 13px;border:1px solid #e7dce5;border-radius:12px;background:#fff;outline:none;color:var(--ink)}.field input:focus,.field textarea:focus,.field select:focus,.searchbox:focus{border-color:#ed8eb0;box-shadow:0 0 0 3px #ffe5ef}.field textarea{min-height:80px;resize:vertical}.row-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.notice{padding:12px 14px;border-radius:13px;background:#fff8df;color:#7a6220;font-size:.9rem;margin:12px 0}.status{font-size:.92rem;margin:10px 0;color:var(--muted);min-height:22px}.word-list{display:grid;gap:10px;margin-top:14px}.word-card{border:1px solid var(--line);border-radius:16px;padding:15px;background:#fff;display:flex;justify-content:space-between;gap:14px;align-items:start}.word-card h3{margin:0;color:var(--blue);font-size:1.15rem}.word-card p{margin:4px 0;color:var(--muted)}.tag{display:inline-block;background:#f2edff;color:#6c58a4;border-radius:99px;padding:3px 8px;font-size:.78rem;margin:4px 4px 0 0}.word-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:end}.muted{color:var(--muted)}.empty{text-align:center;padding:28px;color:var(--muted);border:1px dashed #e9cad8;border-radius:16px}
+.flashcard{background:linear-gradient(135deg,#fff0f6,#eef6ff);border:1px solid var(--line);border-radius:24px;min-height:230px;display:grid;place-items:center;text-align:center;padding:28px;margin:14px 0;cursor:pointer}.flashcard h2{font-size:2.1rem;color:var(--blue);margin:0}.flashcard p{font-size:1.1rem}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.toolbar .searchbox{flex:1;min-width:180px}.authbar{display:flex;align-items:center;gap:8px;font-size:.9rem}.pill{background:#f4f6ff;color:#53618a;border-radius:99px;padding:7px 10px}
+footer{text-align:center;padding:28px;color:#858ba0;font-size:.9rem}
+@media(max-width:800px){header{align-items:flex-start;flex-direction:column}.hero{grid-template-columns:1fr;padding:18px}.hero-img{max-height:360px}.features{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:1.3rem}.row-fields{grid-template-columns:1fr}.word-card{flex-direction:column}.word-actions{justify-content:start}}
 </style>
 </head>
 <body>
 <header>
-  <div class="brand"><div class="brandmark">🌷</div><div>Linh's English Garden<small>MY LITTLE LEARNING CORNER</small></div></div>
-  <nav><button class="active" data-page="home">Home</button><button data-page="library">Vocabulary</button><button data-page="flashcards">Flashcards</button><button data-page="notes">My notes</button><button data-page="practice">Practice</button></nav>
-  <div class="header-right"><div class="date-chip" id="todayDate"></div><div class="avatar" title="Avatar của Linh — có thể thay bằng ảnh riêng">🌼</div></div>
+  <div class="brand"><span class="brand-icon">🌷</span><span>Học Tiếng Anh Cùng Linh Nha</span></div>
+  <nav class="nav" aria-label="Điều hướng">
+    <button class="active" data-view="home">Trang chủ</button>
+    <button data-view="mywords">Từ vựng của tôi</button>
+    <button data-view="study">Góc học tập</button>
+    <button data-view="community">Cộng đồng</button>
+  </nav>
+  <div class="authbar"><span id="userLabel" class="pill">Chưa đăng nhập</span><button class="secondary tiny" id="authOpen">Đăng nhập</button><button class="soft tiny" id="logoutBtn" hidden>Đăng xuất</button></div>
 </header>
-<main class="shell">
-<section class="page active" id="home">
-  <div class="welcome">
-    <div><div class="hand">a little hello from my garden ♡</div><h1>🌷 Hi, mình là <span>Linh</span></h1><p>Đây là góc học tiếng Anh của Linh. Từ vựng, bài học và kiến thức được mình tổng hợp trong quá trình học mỗi ngày. Cứ thong thả học một chút, rồi mình sẽ lớn lên từng ngày nha.</p><button class="btn btn-lav" onclick="go('library')">Khám phá khu vườn →</button> <button class="btn btn-soft" onclick="go('notes')">Góc ghi chú</button></div>
-    <div class="welcome-art"><div class="garden-illustration"><div class="flower">🌸</div><span>grow at your own pace</span></div></div>
+<main>
+<section id="home" class="view active">
+  <div class="hero">
+    <div><span class="eyebrow">🌼 Học một chút mỗi ngày</span><h1>Small steps.<br><span>Big progress!</span></h1>
+      <p>Ghi lại từ mới, tạo bộ từ vựng của riêng bạn và cùng mọi người xây dựng một góc học tiếng Anh thật dễ thương. Mỗi ngày tiến bộ một chút nhé!</p>
+      <div class="hero-actions"><button class="primary" data-go="mywords">＋ Thêm từ vựng</button><button class="secondary" data-go="study">Bắt đầu học ✨</button></div>
+      <div class="mini-note">Listening · Speaking · Reading · Writing — You can do it! 💗</div>
+    </div>
+    <img class="hero-img" src="hero-english-ai.png" alt="Hình minh hoạ AI cô gái học tiếng Anh tại bàn học">
   </div>
-  <div class="stats">
-    <div class="stat"><div class="stat-icon">📚</div><div><strong id="totalWords">0</strong><span>Tổng từ trong vườn</span></div></div>
-    <div class="stat"><div class="stat-icon">🌱</div><div><strong id="masteredWords">0</strong><span>Từ mình đã thuộc</span></div></div>
-    <div class="stat"><div class="stat-icon">☀️</div><div><strong id="streakDays">0</strong><span>Ngày học liên tiếp</span></div></div>
+  <div class="stats"><div class="stat"><strong id="statWords">0</strong><span>Từ của bạn</span></div><div class="stat"><strong id="statReviewed">0</strong><span>Lượt ôn tập</span></div><div class="stat"><strong id="statCommunity">—</strong><span>Từ cộng đồng</span></div></div>
+  <div class="section-head"><div><h2>Chọn cách học hôm nay 💕</h2><p>Học theo cách phù hợp với bạn.</p></div></div>
+  <div class="features"><article class="feature"><div class="emoji">📚</div><h3>Sổ từ vựng cá nhân</h3><p>Lưu từ, nghĩa tiếng Việt, phiên âm và ví dụ. Dữ liệu riêng tư thuộc tài khoản của bạn.</p></article><article class="feature"><div class="emoji">🃏</div><h3>Flashcard thông minh</h3><p>Ẩn nghĩa để tự nhớ, lật thẻ để kiểm tra và đánh dấu từ đã thuộc.</p></article><article class="feature"><div class="emoji">🌏</div><h3>Ngân hàng cộng đồng</h3><p>Chia sẻ từ vựng công khai và học từ những người học tiếng Anh khác.</p></article></div>
+  <div class="notice" id="setupNotice">Để bật đăng ký tài khoản thật và đồng bộ dữ liệu giữa nhiều người, hãy cấu hình Supabase theo hướng dẫn trong file <b>README-SETUP.md</b>. Nếu chưa cấu hình, trang vẫn chạy ở chế độ demo trên trình duyệt này.</div>
+</section>
+
+<section id="mywords" class="view">
+  <div class="section-head"><div><h2>📖 Từ vựng của tôi</h2><p>Thêm từ mới để xây dựng bộ từ vựng cá nhân.</p></div></div>
+  <div class="grid2">
+    <div class="panel"><h3 id="formTitle">Thêm một từ mới ✍️</h3>
+      <form id="wordForm">
+        <div class="field"><label for="word">Từ / cụm từ tiếng Anh *</label><input id="word" required maxlength="120" placeholder="e.g. sustainable"></div>
+        <div class="row-fields"><div class="field"><label for="meaning">Nghĩa tiếng Việt *</label><input id="meaning" required maxlength="250" placeholder="bền vững"></div><div class="field"><label for="pos">Từ loại</label><select id="pos"><option value="">Chọn từ loại</option><option>Noun (danh từ)</option><option>Verb (động từ)</option><option>Adjective (tính từ)</option><option>Adverb (trạng từ)</option><option>Phrase (cụm từ)</option><option>Other</option></select></div></div>
+        <div class="field"><label for="phonetic">Phiên âm (không bắt buộc)</label><input id="phonetic" maxlength="120" placeholder="/səˈsteɪnəbl/"></div>
+        <div class="field"><label for="example">Ví dụ tiếng Anh</label><textarea id="example" maxlength="600" placeholder="We need more sustainable solutions."></textarea></div>
+        <div class="field"><label for="exampleVi">Dịch ví dụ</label><textarea id="exampleVi" maxlength="600" placeholder="Chúng ta cần những giải pháp bền vững hơn."></textarea></div>
+        <div class="row-fields"><div class="field"><label for="topic">Chủ đề</label><input id="topic" maxlength="80" placeholder="Environment"></div><div class="field"><label for="visibility">Quyền hiển thị</label><select id="visibility"><option value="private">Chỉ mình tôi</option><option value="public">Chia sẻ cộng đồng</option></select></div></div>
+        <div class="toolbar"><button class="primary" type="submit" id="saveWord">Lưu từ vựng</button><button class="secondary" type="button" id="cancelEdit" hidden>Huỷ sửa</button></div><div class="status" id="wordStatus" role="status"></div>
+      </form>
+    </div>
+    <div class="panel"><div class="toolbar"><h3 style="margin:0;flex:1">Danh sách của bạn</h3><input id="mySearch" class="searchbox" placeholder="Tìm từ..."></div><div id="myWordList" class="word-list"><div class="empty">Đang tải từ vựng…</div></div></div>
   </div>
-  <div class="home-grid">
-    <div class="panel"><h3>🌷 Today's little word</h3><p class="muted">Một từ nhỏ để mang theo trong ngày hôm nay.</p><div class="word-of-day"><div class="wod-top"><span class="pill">Word of the day</span><span>✧</span></div><div class="wod-word" id="wodWord">Empathy</div><div class="wod-type" id="wodType">(noun)</div><div class="wod-meaning" id="wodMeaning">Khả năng thấu hiểu cảm xúc của người khác.</div><div class="wod-example" id="wodExample">“Empathy helps us understand how others feel.”</div><button class="btn btn-soft" style="margin-top:14px" onclick="saveWod()">♡ Lưu vào từ vựng</button></div></div>
-    <div class="panel"><h3>🍃 Mới trồng trong vườn</h3><p class="muted">Những từ gần đây bạn đã lưu.</p><div id="recentList"></div><button class="tiny-link" onclick="go('library')">Xem toàn bộ thư viện →</button></div>
-  </div>
-  <div class="section-head"><div><h2>Choose your little study moment</h2><p>Hôm nay mình muốn học theo cách nào nhỉ?</p></div></div>
-  <div class="tool-grid">
-    <div class="tool-card"><div class="tool-icon">🌸</div><h3>Vocabulary garden</h3><p>Tìm kiếm và lưu từ vựng theo từng unit, chủ đề và nghĩa tiếng Việt.</p><button class="btn btn-soft" onclick="go('library')">Mở thư viện →</button></div>
-    <div class="tool-card"><div class="tool-icon">🪻</div><h3>Pastel flashcards</h3><p>Lật thẻ từ vựng để tự kiểm tra trí nhớ thật nhẹ nhàng.</p><button class="btn btn-soft" onclick="go('flashcards')">Ôn từ vựng →</button></div>
-    <div class="tool-card"><div class="tool-icon">🍵</div><h3>Linh's notes</h3><p>Ghi lại điều mới học, câu hay và những điều muốn nhớ lâu.</p><button class="btn btn-soft" onclick="go('notes')">Viết ghi chú →</button></div>
+</section>
+
+<section id="study" class="view">
+  <div class="section-head"><div><h2>🃏 Góc học tập</h2><p>Ôn lại từ vựng của bạn bằng flashcard.</p></div></div>
+  <div class="panel"><div class="toolbar"><label for="studySource">Bộ từ muốn học:</label><select id="studySource"><option value="mine">Từ vựng của tôi</option><option value="community">Từ vựng cộng đồng</option></select><button class="secondary" id="shuffleBtn">🔀 Trộn thẻ</button></div>
+    <div id="flashcard" class="flashcard" tabindex="0" role="button" aria-label="Nhấn để lật flashcard"><div><p class="muted">Nhấn vào thẻ để xem nghĩa</p><h2>Ready to learn? 🌱</h2></div></div>
+    <div class="toolbar" style="justify-content:center"><button class="secondary" id="prevCard">← Thẻ trước</button><span id="cardCounter" class="pill">0 / 0</span><button class="secondary" id="nextCard">Thẻ tiếp →</button><button class="primary" id="knownBtn">✓ Tôi đã nhớ</button></div><div id="studyStatus" class="status" style="text-align:center"></div>
   </div>
 </section>
-<section class="page" id="library">
-  <h1 class="page-title">🌿 Vocabulary Garden</h1><p class="page-desc">Thư viện từ vựng tiếng Anh của Linh — bắt đầu với các từ theo chủ đề Skillful được nhập mẫu.</p>
-  <div class="toolbar"><input id="search" placeholder="⌕  Tìm từ tiếng Anh hoặc nghĩa..." oninput="renderLibrary()"><select id="unitFilter" onchange="renderLibrary()"><option value="all">Tất cả Units</option><option value="Unit 1">Unit 1 · Social Media</option><option value="Unit 2">Unit 2 · Games</option><option value="Unit 3">Unit 3 · Energy</option><option value="Unit 4">Unit 4 · Risk</option><option value="My words">Từ của mình</option></select><button class="btn btn-lav" onclick="openWordModal()">+ Thêm từ</button></div>
-  <div class="unit-tabs"><button class="active" onclick="setQuickUnit('all',this)">All flowers</button><button onclick="setQuickUnit('Unit 1',this)">🌸 Social Media</button><button onclick="setQuickUnit('Unit 2',this)">🎮 Games</button><button onclick="setQuickUnit('Unit 3',this)">🌱 Energy</button><button onclick="setQuickUnit('Unit 4',this)">☁️ Risk</button><button onclick="setQuickUnit('My words',this)">♡ My words</button></div>
-  <div class="vocab-grid" id="vocabGrid"></div>
-  <p class="muted" style="margin-top:17px">Lưu ý: đây là bộ từ mẫu khởi đầu dựa trên danh sách bạn cung cấp, không phải toàn bộ nội dung hai bộ Skillful 4. Bạn có thể thêm từ của mình trong website.</p>
+
+<section id="community" class="view">
+  <div class="section-head"><div><h2>🌏 Ngân hàng từ vựng cộng đồng</h2><p>Khám phá từ vựng được chia sẻ công khai bởi người học.</p></div></div>
+  <div class="panel"><div class="toolbar"><input id="communitySearch" class="searchbox" placeholder="Tìm từ, nghĩa hoặc chủ đề..."><button class="secondary" id="refreshCommunity">↻ Làm mới</button></div><div class="notice">Khi đăng nhập bằng tài khoản thật, bạn có thể chia sẻ từ từ trang “Từ vựng của tôi”. Không chỉnh sửa được từ gốc của người khác.</div><div id="communityList" class="word-list"><div class="empty">Đang tải nội dung cộng đồng…</div></div></div>
 </section>
-<section class="page" id="flashcards">
-  <h1 class="page-title">🪻 Pastel Flashcards</h1><p class="page-desc">Nhìn từ, thử nhớ nghĩa rồi chạm vào thẻ để lật nhé.</p><div class="flash-wrap"><div class="flash-card" onclick="flipFlash()"><div class="label" id="flashLabel">A LITTLE WORD</div><h2 id="flashWord">crowdfunding</h2><p id="flashMeaning">Chạm vào thẻ để xem nghĩa</p></div><div class="flash-controls"><button class="btn btn-soft" onclick="prevFlash()">← Trước</button><button class="btn btn-lav" onclick="flipFlash()">Lật thẻ ♡</button><button class="btn btn-soft" onclick="nextFlash()">Tiếp →</button></div><p class="muted" id="flashCount">Thẻ 1</p><button class="btn btn-mint" onclick="markMastered()">✓ Mình đã thuộc từ này</button></div>
+
+<section id="auth" class="view">
+  <div class="section-head"><div><h2>💌 Chào mừng bạn!</h2><p>Tạo tài khoản để lưu từ vựng riêng và học cùng cộng đồng.</p></div></div>
+  <div class="grid2">
+    <div class="panel"><h3>Đăng nhập</h3><form id="loginForm"><div class="field"><label>Email</label><input type="email" id="loginEmail" required autocomplete="email" placeholder="ban@email.com"></div><div class="field"><label>Mật khẩu</label><input type="password" id="loginPassword" required autocomplete="current-password" minlength="6" placeholder="Ít nhất 6 ký tự"></div><button class="primary" type="submit">Đăng nhập</button><div id="loginStatus" class="status"></div></form></div>
+    <div class="panel"><h3>Đăng ký tài khoản mới</h3><form id="signupForm"><div class="field"><label>Tên hiển thị</label><input id="signupName" required maxlength="60" autocomplete="name" placeholder="Tên bạn muốn mọi người nhìn thấy"></div><div class="field"><label>Email</label><input type="email" id="signupEmail" required autocomplete="email" placeholder="ban@email.com"></div><div class="field"><label>Mật khẩu</label><input type="password" id="signupPassword" required minlength="6" autocomplete="new-password" placeholder="Ít nhất 6 ký tự"></div><button class="primary" type="submit">Tạo tài khoản miễn phí</button><div id="signupStatus" class="status"></div></form></div>
+  </div>
+  <p class="muted">Bảo mật: mật khẩu được xử lý bởi Supabase Auth, website không lưu mật khẩu dạng chữ thường.</p>
 </section>
-<section class="page" id="notes">
-  <h1 class="page-title">🍵 Góc ghi chú của Linh</h1><p class="page-desc">Một góc nhỏ để cất những từ mới, câu hay và kiến thức muốn nhớ lâu.</p>
-  <div class="notes-layout"><div class="panel"><h3>✎ Viết một điều nhỏ</h3><div class="field"><label>Tiêu đề</label><input id="noteTitle" placeholder="Những từ mới hôm nay..."></div><div class="field"><label>Ghi chú</label><textarea id="noteBody" rows="6" placeholder="Hôm nay mình học được..."></textarea></div><button class="btn btn-lav" onclick="addNote()">Lưu ghi chú ♡</button><p class="muted">Ghi chú được lưu trên trình duyệt hiện tại.</p></div><div class="panel"><h3>📒 Notebook</h3><p class="muted">Những điều bạn đã lưu lại trong hành trình học.</p><div id="notesList"></div></div></div>
-</section>
-<section class="page" id="practice">
-  <h1 class="page-title">☁️ Little practice time</h1><p class="page-desc">Một câu hỏi nhanh để xem những từ trong vườn đã nở hoa chưa.</p><div class="panel quiz-box"><span class="pill">VOCABULARY CHECK</span><div class="progress"><div id="quizProgress"></div></div><p class="muted" id="quizNum">Question 1</p><h2 class="quiz-word" id="quizWord">equity</h2><p class="muted">Từ này có nghĩa là gì?</p><div class="answers" id="answers"></div><p id="quizFeedback" style="min-height:22px;color:#8d7db2"></p><button class="btn btn-lav" onclick="nextQuestion()">Câu tiếp theo →</button></div>
-</section>
-<footer>made with love & a little bit of lavender ♡ · Linh's English Garden</footer>
 </main>
-<div class="modal-bg" id="wordModal"><div class="modal"><h2>🌱 Trồng một từ mới</h2><p>Thêm một từ vào khu vườn từ vựng của Linh.</p><form id="wordForm"><div class="field"><label>English word *</label><input id="wordEn" required placeholder="e.g. sustainable"></div><div class="field"><label>Nghĩa tiếng Việt *</label><input id="wordVi" required placeholder="e.g. bền vững"></div><div class="field"><label>Loại từ</label><input id="wordPos" placeholder="noun / verb / adjective"></div><div class="field"><label>Câu ví dụ</label><textarea id="wordEx" rows="2" placeholder="A sentence to help you remember..."></textarea></div><div class="field"><label>Chủ đề / Unit</label><select id="wordUnit"><option>My words</option><option>Unit 1</option><option>Unit 2</option><option>Unit 3</option><option>Unit 4</option></select></div><div class="modal-actions"><button type="button" class="btn btn-soft" onclick="closeWordModal()">Để sau</button><button class="btn btn-lav">Lưu từ ♡</button></div></form></div></div>
-<script>
-const seed=[
-["crowdfunding","gọi vốn cộng đồng","noun","A way of raising money from many people.","Unit 1"],
-["entrepreneur","doanh nhân; người khởi nghiệp","noun","The entrepreneur started a small online business.","Unit 1"],
-["equity","cổ phần; vốn chủ sở hữu","noun","The founders offered equity to early investors.","Unit 1"],
-["venture capital","vốn đầu tư mạo hiểm","noun","The start-up received venture capital.","Unit 1"],
-["start-up","công ty khởi nghiệp","noun","She works for a technology start-up.","Unit 1"],
-["backer","người ủng hộ / nhà tài trợ","noun","Each backer helped fund the project.","Unit 1"],
-["tangible","hữu hình; rõ ràng","adjective","The project brought tangible benefits.","Unit 1"],
-["philanthropic","thuộc hoạt động từ thiện","adjective","They support philanthropic projects.","Unit 1"],
-["subscription","gói đăng ký; sự đăng ký","noun","My music subscription renews monthly.","Unit 2"],
-["dominate","thống trị; chiếm ưu thế","verb","One team continued to dominate the game.","Unit 2"],
-["norm","chuẩn mực; điều bình thường","noun","Online gaming has become a social norm.","Unit 2"],
-["feasible","khả thi","adjective","The plan is feasible with a small budget.","Unit 2"],
-["consumption","sự tiêu thụ","noun","Energy consumption rises in hot weather.","Unit 2"],
-["analytical","thuộc phân tích; có óc phân tích","adjective","The game develops analytical skills.","Unit 2"],
-["awareness","nhận thức","noun","The campaign raises awareness of online safety.","Unit 2"],
-["deficit","sự thâm hụt; thiếu hụt","noun","The country faces an energy deficit.","Unit 2"],
-["renewable","có thể tái tạo","adjective","Solar power is a renewable energy source.","Unit 3"],
-["carbon-neutral","trung hòa carbon","adjective","The city aims to become carbon-neutral.","Unit 3"],
-["cultivate","nuôi dưỡng; trau dồi; canh tác","verb","We should cultivate good study habits.","Unit 3"],
-["adverse","bất lợi; có hại","adjective","Pollution can have adverse effects on health.","Unit 3"],
-["excessive","quá mức","adjective","Excessive energy use increases costs.","Unit 3"],
-["sustainability","tính bền vững","noun","Sustainability matters for future generations.","Unit 3"],
-["recession","suy thoái kinh tế","noun","The recession affected many small businesses.","Unit 4"],
-["regulator","cơ quan quản lý; người điều tiết","noun","The regulator introduced new rules.","Unit 4"],
-["bankruptcy","sự phá sản","noun","The company filed for bankruptcy.","Unit 4"],
-["credit crunch","khủng hoảng tín dụng","noun","A credit crunch makes borrowing difficult.","Unit 4"],
-["mortgage","khoản vay thế chấp","noun","They applied for a mortgage.","Unit 4"],
-["austerity","chính sách thắt lưng buộc bụng","noun","Austerity measures reduced public spending.","Unit 4"],
-["empathy","sự đồng cảm; khả năng thấu hiểu cảm xúc","noun","Empathy helps us understand how others feel.","My words"]
-].map((x,i)=>({id:i+1,en:x[0],vi:x[1],pos:x[2],ex:x[3],unit:x[4],mastered:false}));
-let words=JSON.parse(localStorage.getItem('linhGardenWords')||'null')||seed;
-let notes=JSON.parse(localStorage.getItem('linhGardenNotes')||'[]');
-let mastered=new Set(JSON.parse(localStorage.getItem('linhGardenMastered')||'[]'));
-let streak=Number(localStorage.getItem('linhGardenStreak')||0);
-let lastStudy=localStorage.getItem('linhGardenLastStudy')||'';
-let filterUnit='all',flashIndex=0,flashFlipped=false,quizIndex=0,quizAnswered=false,quizOrder=[];
-const $=id=>document.getElementById(id);
-function save(){localStorage.setItem('linhGardenWords',JSON.stringify(words));localStorage.setItem('linhGardenNotes',JSON.stringify(notes));localStorage.setItem('linhGardenMastered',JSON.stringify([...mastered]));localStorage.setItem('linhGardenStreak',streak)}
-function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function go(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='library')renderLibrary();if(id==='flashcards')renderFlash();if(id==='notes')renderNotes();if(id==='practice')startQuiz();window.scrollTo({top:0,behavior:'smooth'});markStudy()}
-document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>go(b.dataset.page));
-function markStudy(){let today=new Date().toDateString();if(lastStudy!==today){let y=new Date();y.setDate(y.getDate()-1);streak=lastStudy===y.toDateString()?streak+1:1;lastStudy=today;localStorage.setItem('linhGardenLastStudy',today);save()}renderStats()}
-function renderStats(){$('totalWords').textContent=words.length;$('masteredWords').textContent=mastered.size;$('streakDays').textContent=streak}
-function renderHome(){renderStats();let today=new Date();let pick=(today.getFullYear()*372+today.getMonth()*31+today.getDate())%words.length;let w=words[pick]||seed[0];$('wodWord').textContent=w.en;$('wodType').textContent='('+w.pos+')';$('wodMeaning').textContent=w.vi;$('wodExample').textContent='“'+w.ex+'”';$('recentList').innerHTML=words.slice(-4).reverse().map(w=>`<div class="vocab-row"><div><strong>${esc(w.en)}</strong><small>${esc(w.vi)}</small></div><span class="unit-tag">${esc(w.unit)}</span></div>`).join('')}
-function renderLibrary(){let q=($('search').value||'').toLowerCase(),u=$('unitFilter').value;if(filterUnit!=='all')u=filterUnit;let arr=words.filter(w=>(u==='all'||w.unit===u)&&(w.en.toLowerCase().includes(q)||w.vi.toLowerCase().includes(q)||w.ex.toLowerCase().includes(q)));$('vocabGrid').innerHTML=arr.length?arr.map(w=>`<article class="vocab-card"><div style="display:flex;justify-content:space-between;gap:8px"><h3>${esc(w.en)}</h3><button class="icon-btn" title="Đánh dấu đã thuộc" onclick="toggleMastered(${w.id})">${mastered.has(w.id)?'🌸':'♡'}</button></div><span class="pos">${esc(w.pos)} · ${esc(w.unit)}</span><div class="meaning">${esc(w.vi)}</div><div class="example">${esc(w.ex)}</div><div class="card-foot"><span class="unit-tag">${mastered.has(w.id)?'Đã thuộc':'Đang học'}</span><button class="icon-btn" onclick="editWord(${w.id})">✎ Sửa</button></div></article>`).join(''):'<div class="empty">🌱 Chưa có từ nào phù hợp. Hãy thử tìm kiếm khác hoặc trồng thêm từ mới nhé!</div>'}
-function setQuickUnit(u,btn){filterUnit=u;document.querySelectorAll('.unit-tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');$('unitFilter').value=u;renderLibrary()}
-function openWordModal(){ $('wordForm').reset();$('wordModal').classList.add('show')}
-function closeWordModal(){$('wordModal').classList.remove('show')}
-$('wordForm').addEventListener('submit',e=>{e.preventDefault();words.push({id:Date.now(),en:$('wordEn').value.trim(),vi:$('wordVi').value.trim(),pos:$('wordPos').value.trim()||'word',ex:$('wordEx').value.trim(),unit:$('wordUnit').value,mastered:false});save();closeWordModal();renderAll()});
-function editWord(id){let w=words.find(x=>x.id===id);if(!w)return;let vi=prompt('Nghĩa tiếng Việt:',w.vi);if(vi===null)return;let ex=prompt('Câu ví dụ:',w.ex);if(ex===null)return;w.vi=vi;w.ex=ex;save();renderAll()}
-function toggleMastered(id){if(mastered.has(id))mastered.delete(id);else mastered.add(id);save();renderAll()}
-function saveWod(){let w=words.find(x=>x.en===$('wodWord').textContent);if(!w){alert('Từ Word of the Day đã có trong thư viện rồi nha ♡');return}alert('Từ này đã có trong thư viện của Linh rồi ♡');go('library')}
-function renderFlash(){if(!words.length)return;$('flashWord').textContent=words[flashIndex%words.length].en;$('flashMeaning').textContent=flashFlipped?words[flashIndex%words.length].vi:'Chạm vào thẻ để xem nghĩa';$('flashLabel').textContent=flashFlipped?'MEANING':'A LITTLE WORD';$('flashCount').textContent=`Thẻ ${flashIndex%words.length+1}/${words.length} · ${words[flashIndex%words.length].unit}`}
-function flipFlash(){flashFlipped=!flashFlipped;renderFlash()}
-function nextFlash(){flashIndex=(flashIndex+1)%words.length;flashFlipped=false;renderFlash()}
-function prevFlash(){flashIndex=(flashIndex-1+words.length)%words.length;flashFlipped=false;renderFlash()}
-function markMastered(){let w=words[flashIndex%words.length];mastered.add(w.id);save();nextFlash();renderAll()}
-function startQuiz(){quizIndex=0;quizOrder=[...words].sort(()=>Math.random()-.5);renderQuiz()}
-function renderQuiz(){if(!quizOrder.length)return;quizAnswered=false;let w=quizOrder[quizIndex%quizOrder.length];$('quizNum').textContent=`Question ${quizIndex+1} · ${quizOrder.length} little steps`;$('quizProgress').style.width=((quizIndex%quizOrder.length+1)/quizOrder.length*100)+'%';$('quizWord').textContent=w.en;$('quizFeedback').textContent='';let opts=[w];while(opts.length<Math.min(4,words.length)){let x=words[Math.floor(Math.random()*words.length)];if(!opts.some(o=>o.id===x.id))opts.push(x)}opts.sort(()=>Math.random()-.5);$('answers').innerHTML=opts.map(o=>`<button onclick="answerQuiz(${o.id},this)">${esc(o.vi)}</button>`).join('')}
-function answerQuiz(id,btn){if(quizAnswered)return;quizAnswered=true;let w=quizOrder[quizIndex%quizOrder.length];document.querySelectorAll('#answers button').forEach(b=>{b.disabled=true;if(b.textContent===w.vi){b.style.background='#e4f4e9';b.style.borderColor='#9bcbb0'}});if(id===w.id){$('quizFeedback').textContent='🌸 Chính xác! Một bông hoa nữa nở rồi!';mastered.add(w.id)}else $('quizFeedback').textContent='♡ Chưa đúng lần này. Đáp án: '+w.vi;save();renderStats()}
-function nextQuestion(){quizIndex++;if(quizIndex>=quizOrder.length)quizOrder=[...words].sort(()=>Math.random()-.5),quizIndex=0;renderQuiz()}
-function addNote(){let title=$('noteTitle').value.trim(),body=$('noteBody').value.trim();if(!title&&!body){alert('Viết một chút gì đó trước nha ♡');return}notes.unshift({id:Date.now(),title:title||'Một ghi chú nhỏ',body,date:new Date().toLocaleDateString('vi-VN')});$('noteTitle').value='';$('noteBody').value='';save();renderNotes()}
-function renderNotes(){$('notesList').innerHTML=notes.length?notes.map(n=>`<div class="note"><button class="delete" onclick="deleteNote(${n.id})">×</button><strong>${esc(n.title)}</strong><p>${esc(n.body)}</p><small>${esc(n.date)}</small></div>`).join(''):'<p class="muted">Chưa có ghi chú nào. Lưu lại điều đầu tiên bạn học hôm nay nhé!</p>'}
-function deleteNote(id){notes=notes.filter(n=>n.id!==id);save();renderNotes()}
-function renderAll(){renderHome();renderLibrary();renderStats();renderNotes();renderFlash()}
-$('todayDate').textContent=new Date().toLocaleDateString('vi-VN',{day:'numeric',month:'short',year:'numeric'});
-$('wordModal').addEventListener('click',e=>{if(e.target.id==='wordModal')closeWordModal()});
-renderAll();
+<footer>Made with 💗 for every English learner · Học một chút, tiến bộ mỗi ngày 🌷</footer>
+<script type="module">
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+/* DÁN thông tin Supabase project của bạn vào hai dòng bên dưới.
+   Không bao giờ đặt service_role key trong website. Chỉ dùng anon/publishable key. */
+const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
+const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+const $ = id => document.getElementById(id);
+let user = null, words = [], communityWords = [], editId = null, cardIndex = 0, showBack = false, studyWords = [], reviewed = 0;
+const demoKey = 'linhEnglishDemoWordsV1';
+function loadDemo(){try{return JSON.parse(localStorage.getItem(demoKey)||'[]')}catch{return []}}
+function saveDemo(){localStorage.setItem(demoKey,JSON.stringify(words))}
+function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function setStatus(id,msg){$(id).textContent=msg}
+function activate(view){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===view));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));if(view==='study')prepareStudy();if(view==='community')renderCommunity();if(view==='mywords')renderMine();window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.view)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.go)));
+$('authOpen').addEventListener('click',()=>activate('auth'));
+$('logoutBtn').addEventListener('click',async()=>{if(supabase)await supabase.auth.signOut();user=null;updateAuth();await refreshWords();activate('home')});
+function updateAuth(){ $('userLabel').textContent=user?(user.user_metadata?.display_name||user.email||'Bạn học'):'Chưa đăng nhập';$('authOpen').hidden=!!user;$('logoutBtn').hidden=!user;$('setupNotice').hidden=configured; }
+async function refreshWords(){
+ if(configured && user){
+   const {data,error}=await supabase.from('vocabulary').select('*').eq('owner_id',user.id).order('created_at',{ascending:false});
+   if(error){setStatus('wordStatus','Không tải được dữ liệu: '+error.message);words=[]}else words=data||[];
+ }else if(!configured){words=loadDemo()}else{words=[]}
+ renderMine();updateStats();renderCommunity();
+}
+function wordPayload(){return {word:$('word').value.trim(),meaning_vi:$('meaning').value.trim(),part_of_speech:$('pos').value,phonetic:$('phonetic').value.trim(),example_en:$('example').value.trim(),example_vi:$('exampleVi').value.trim(),topic:$('topic').value.trim(),visibility:$('visibility').value}}
+$('wordForm').addEventListener('submit',async e=>{
+ e.preventDefault();const payload=wordPayload();
+ if(configured&&!user){setStatus('wordStatus','Bạn cần đăng nhập để lưu từ trên tài khoản.');activate('auth');return}
+ if(configured){
+   let result;
+   if(editId) result=await supabase.from('vocabulary').update(payload).eq('id',editId).eq('owner_id',user.id);
+   else result=await supabase.from('vocabulary').insert({...payload,owner_id:user.id});
+   if(result.error){setStatus('wordStatus','Chưa lưu được: '+result.error.message);return}
+ }else{
+   if(editId)words=words.map(w=>w.id===editId?{...w,...payload}:w);
+   else words.unshift({id:crypto.randomUUID(),...payload,created_at:new Date().toISOString(),owner_id:'demo'});
+   saveDemo();
+ }
+ $('wordForm').reset();editId=null;$('formTitle').textContent='Thêm một từ mới ✍️';$('saveWord').textContent='Lưu từ vựng';$('cancelEdit').hidden=true;
+ setStatus('wordStatus',configured?'Đã lưu từ vựng vào tài khoản của bạn 💗':'Đã lưu trong trình duyệt này. Cấu hình Supabase để chia sẻ và đồng bộ nhiều tài khoản.');
+ await refreshWords();
+});
+$('cancelEdit').addEventListener('click',()=>{editId=null;$('wordForm').reset();$('formTitle').textContent='Thêm một từ mới ✍️';$('saveWord').textContent='Lưu từ vựng';$('cancelEdit').hidden=true});
+function renderMine(){
+ const q=$('mySearch').value.toLowerCase().trim();const filtered=words.filter(w=>(w.word+' '+w.meaning_vi+' '+(w.topic||'')).toLowerCase().includes(q));
+ $('myWordList').innerHTML=filtered.length?filtered.map(w=>`<article class="word-card"><div><h3>${esc(w.word)} ${w.phonetic?`<small class="muted">${esc(w.phonetic)}</small>`:''}</h3><p>${esc(w.meaning_vi)} ${w.part_of_speech?`· ${esc(w.part_of_speech)}`:''}</p>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<span class="tag">${w.visibility==='public'?'🌏 Công khai':'🔒 Riêng tư'}</span>${w.topic?`<span class="tag">${esc(w.topic)}</span>`:''}</div><div class="word-actions"><button class="secondary tiny" data-edit="${esc(w.id)}">Sửa</button><button class="danger tiny" data-delete="${esc(w.id)}">Xoá</button></div></article>`).join(''):'<div class="empty">Chưa có từ nào phù hợp. Thêm từ đầu tiên nhé 🌱</div>';
+ $('myWordList').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editWord(b.dataset.edit));$('myWordList').querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deleteWord(b.dataset.delete));
+}
+function editWord(id){const w=words.find(x=>String(x.id)===String(id));if(!w)return;editId=id;$('word').value=w.word||'';$('meaning').value=w.meaning_vi||'';$('pos').value=w.part_of_speech||'';$('phonetic').value=w.phonetic||'';$('example').value=w.example_en||'';$('exampleVi').value=w.example_vi||'';$('topic').value=w.topic||'';$('visibility').value=w.visibility||'private';$('formTitle').textContent='Chỉnh sửa từ vựng';$('saveWord').textContent='Cập nhật từ';$('cancelEdit').hidden=false;window.scrollTo({top:0,behavior:'smooth'})}
+async function deleteWord(id){if(!confirm('Bạn có chắc muốn xoá từ này không?'))return;if(configured){const {error}=await supabase.from('vocabulary').delete().eq('id',id).eq('owner_id',user.id);if(error){setStatus('wordStatus','Không xoá được: '+error.message);return}}else{words=words.filter(w=>String(w.id)!==String(id));saveDemo()}await refreshWords()}
+$('mySearch').addEventListener('input',renderMine);
+async function loadCommunity(){
+ if(configured){const {data,error}=await supabase.from('vocabulary').select('id,word,meaning_vi,part_of_speech,phonetic,example_en,example_vi,topic,owner_id,created_at').eq('visibility','public').order('created_at',{ascending:false}).limit(300);if(error){communityWords=[];setStatus('studyStatus','Không tải được ngân hàng cộng đồng: '+error.message)}else communityWords=data||[]}
+ else communityWords=loadDemo().filter(w=>w.visibility==='public');
+ updateStats();renderCommunity()
+}
+function renderCommunity(){const q=$('communitySearch').value.toLowerCase().trim();const list=communityWords.filter(w=>(w.word+' '+w.meaning_vi+' '+(w.topic||'')).toLowerCase().includes(q));$('communityList').innerHTML=list.length?list.map(w=>`<article class="word-card"><div><h3>${esc(w.word)} ${w.phonetic?`<small class="muted">${esc(w.phonetic)}</small>`:''}</h3><p>${esc(w.meaning_vi)} ${w.part_of_speech?'· '+esc(w.part_of_speech):''}</p>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<span class="tag">${esc(w.topic||'General')}</span><span class="tag">Người học cộng đồng</span></div><div class="word-actions"><button class="secondary tiny" data-learn="${esc(w.id)}">Học từ này</button></div></article>`).join(''):'<div class="empty">Chưa có từ công khai phù hợp. Hãy thêm từ và chọn “Chia sẻ cộng đồng” để đóng góp nhé 🌷</div>';$('communityList').querySelectorAll('[data-learn]').forEach(b=>b.onclick=()=>{studyWords=communityWords.slice();cardIndex=Math.max(0,studyWords.findIndex(w=>String(w.id)===b.dataset.learn));showBack=false;activate('study');renderCard()})}
+$('communitySearch').addEventListener('input',renderCommunity);$('refreshCommunity').addEventListener('click',loadCommunity);
+function prepareStudy(){studyWords=$('studySource').value==='community'?communityWords.slice():words.slice();cardIndex=0;showBack=false;renderCard()}
+function renderCard(){const card=$('flashcard');if(!studyWords.length){card.innerHTML='<div><p class="muted">Thêm từ vựng hoặc chọn ngân hàng cộng đồng nhé</p><h2>Ready to learn? 🌱</h2></div>';$('cardCounter').textContent='0 / 0';return}if(cardIndex>=studyWords.length)cardIndex=0;if(cardIndex<0)cardIndex=studyWords.length-1;const w=studyWords[cardIndex];card.innerHTML=showBack?`<div><p class="muted">${esc(w.word)}</p><h2>${esc(w.meaning_vi)}</h2>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<p class="muted">Nhấn thẻ để quay lại từ</p></div>`:`<div><p class="muted">Từ ${cardIndex+1} · Nhấn để lật thẻ</p><h2>${esc(w.word)}</h2>${w.phonetic?`<p>${esc(w.phonetic)}</p>`:''}<span class="tag">${esc(w.part_of_speech||w.topic||'Vocabulary')}</span></div>`;$('cardCounter').textContent=`${cardIndex+1} / ${studyWords.length}`}
+$('flashcard').addEventListener('click',()=>{showBack=!showBack;renderCard()});$('flashcard').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showBack=!showBack;renderCard()}});
+$('prevCard').addEventListener('click',()=>{cardIndex--;showBack=false;renderCard()});$('nextCard').addEventListener('click',()=>{cardIndex++;showBack=false;renderCard()});$('studySource').addEventListener('change',prepareStudy);
+$('shuffleBtn').addEventListener('click',()=>{studyWords.sort(()=>Math.random()-.5);cardIndex=0;showBack=false;renderCard()});
+$('knownBtn').addEventListener('click',()=>{if(!studyWords.length)return;reviewed++;updateStats();setStatus('studyStatus','Tốt lắm! Bạn đã đánh dấu nhớ từ này 🌟');cardIndex=(cardIndex+1)%studyWords.length;showBack=false;renderCard()});
+function updateStats(){$('statWords').textContent=words.length;$('statReviewed').textContent=reviewed;$('statCommunity').textContent=configured?communityWords.length:'Demo'}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();if(!configured){setStatus('loginStatus','Cần cấu hình Supabase trong index.html trước khi dùng tài khoản thật.');return}const {data,error}=await supabase.auth.signInWithPassword({email:$('loginEmail').value.trim(),password:$('loginPassword').value});setStatus('loginStatus',error?error.message:'Đăng nhập thành công!');if(data.user){user=data.user;updateAuth();await refreshWords();activate('home')}});
+$('signupForm').addEventListener('submit',async e=>{e.preventDefault();if(!configured){setStatus('signupStatus','Cần cấu hình Supabase trong index.html trước khi bật đăng ký tài khoản thật. Xem README-SETUP.md nhé.');return}const {data,error}=await supabase.auth.signUp({email:$('signupEmail').value.trim(),password:$('signupPassword').value,options:{data:{display_name:$('signupName').value.trim()}}});setStatus('signupStatus',error?error.message:(data.session?'Tạo tài khoản thành công!':'Đã gửi đăng ký. Nếu bật xác minh email, hãy kiểm tra hộp thư để xác nhận.'));if(data.user){user=data.user;updateAuth();await refreshWords();if(data.session)activate('home')}});
+async function init(){if(configured){const {data}=await supabase.auth.getSession();user=data.session?.user||null;supabase.auth.onAuthStateChange((_event,session)=>{user=session?.user||null;updateAuth();refreshWords()})}updateAuth();await refreshWords();await loadCommunity();prepareStudy()}
+init();
 </script>
-</body></html>
+</body>
+</html>
