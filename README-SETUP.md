@@ -30,3 +30,17 @@ Nếu chưa cấu hình Supabase, website chạy ở **chế độ demo** và ch
 
 ## Đưa lên GitHub
 Đặt 3 file chính `index.html`, `hero-english-ai.png`, `supabase-schema.sql` (và file hướng dẫn này) trong cùng thư mục gốc của repository. Commit/push rồi bấm redeploy trên Vibe Host.
+
+
+## Lý do nút đăng ký chưa hoạt động
+Điền tên, email và mật khẩu trên trang chỉ là nhập biểu mẫu. Để tạo tài khoản thật, cần kết nối website với Supabase:
+- Thay `YOUR_SUPABASE_URL` bằng Project URL thật.
+- Thay `YOUR_SUPABASE_ANON_KEY` bằng public/anon/publishable key.
+- Chạy `supabase-schema.sql` trong SQL Editor của project.
+- Commit các file lên GitHub và redeploy Vibe Host.
+
+Không dùng `service_role` key trên trình duyệt. Màu giao diện bản cập nhật: xanh dương đậm, xanh pastel và trắng.
+
+
+## Phiên bản không có đăng ký tài khoản
+Phiên bản index.html hiện tại đã bỏ màn hình đăng nhập/đăng ký và chạy ở chế độ học thử. Từ vựng được lưu trong localStorage của trình duyệt hiện tại; dữ liệu không đồng bộ giữa thiết bị và không được chia sẻ trực tuyến.

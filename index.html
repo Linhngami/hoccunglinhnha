@@ -30,13 +30,13 @@ footer{text-align:center;padding:28px;color:#858ba0;font-size:.9rem}
     <button data-view="study">Góc học tập</button>
     <button data-view="community">Cộng đồng</button>
   </nav>
-  <div class="authbar"><span id="userLabel" class="pill">Chưa đăng nhập</span><button class="secondary tiny" id="authOpen">Đăng nhập</button><button class="soft tiny" id="logoutBtn" hidden>Đăng xuất</button></div>
+  <div class="authbar"><span class="pill">🌱 Chế độ học thử</span></div>
 </header>
 <main>
 <section id="home" class="view active">
   <div class="hero">
     <div><span class="eyebrow">🌼 Học một chút mỗi ngày</span><h1>Small steps.<br><span>Big progress!</span></h1>
-      <p>Ghi lại từ mới, tạo bộ từ vựng của riêng bạn và cùng mọi người xây dựng một góc học tiếng Anh thật dễ thương. Mỗi ngày tiến bộ một chút nhé!</p>
+      <p>Ghi lại từ mới, tạo bộ từ vựng của riêng bạn và luyện tập mỗi ngày trong một góc học tiếng Anh thật dễ thương.</p>
       <div class="hero-actions"><button class="primary" data-go="mywords">＋ Thêm từ vựng</button><button class="secondary" data-go="study">Bắt đầu học ✨</button></div>
       <div class="mini-note">Listening · Speaking · Reading · Writing — You can do it! 💗</div>
     </div>
@@ -44,8 +44,8 @@ footer{text-align:center;padding:28px;color:#858ba0;font-size:.9rem}
   </div>
   <div class="stats"><div class="stat"><strong id="statWords">0</strong><span>Từ của bạn</span></div><div class="stat"><strong id="statReviewed">0</strong><span>Lượt ôn tập</span></div><div class="stat"><strong id="statCommunity">—</strong><span>Từ cộng đồng</span></div></div>
   <div class="section-head"><div><h2>Chọn cách học hôm nay 💕</h2><p>Học theo cách phù hợp với bạn.</p></div></div>
-  <div class="features"><article class="feature"><div class="emoji">📚</div><h3>Sổ từ vựng cá nhân</h3><p>Lưu từ, nghĩa tiếng Việt, phiên âm và ví dụ. Dữ liệu riêng tư thuộc tài khoản của bạn.</p></article><article class="feature"><div class="emoji">🃏</div><h3>Flashcard thông minh</h3><p>Ẩn nghĩa để tự nhớ, lật thẻ để kiểm tra và đánh dấu từ đã thuộc.</p></article><article class="feature"><div class="emoji">🌏</div><h3>Ngân hàng cộng đồng</h3><p>Chia sẻ từ vựng công khai và học từ những người học tiếng Anh khác.</p></article></div>
-  <div class="notice" id="setupNotice">Bạn đã nhập thông tin vào biểu mẫu, nhưng để tạo tài khoản thật, website cần kết nối Supabase. Hãy cấu hình hai giá trị <b>SUPABASE_URL</b> và <b>SUPABASE_ANON_KEY</b> trong index.html theo hướng dẫn ở <b>README-SETUP.md</b>. Khi chưa kết nối, biểu mẫu chưa thể tạo tài khoản hoặc đồng bộ dữ liệu.</div>
+  <div class="features"><article class="feature"><div class="emoji">📚</div><h3>Sổ từ vựng cá nhân</h3><p>Lưu từ, nghĩa tiếng Việt, phiên âm và ví dụ. Từ vựng được lưu trên trình duyệt bạn đang dùng.</p></article><article class="feature"><div class="emoji">🃏</div><h3>Flashcard thông minh</h3><p>Ẩn nghĩa để tự nhớ, lật thẻ để kiểm tra và đánh dấu từ đã thuộc.</p></article><article class="feature"><div class="emoji">🌏</div><h3>Ngân hàng cộng đồng</h3><p>Đánh dấu từ công khai để xem trong mục cộng đồng trên trình duyệt này.</p></article></div>
+  <div class="notice" id="setupNotice">✨ Bạn đang dùng chế độ học thử: từ vựng được lưu trên trình duyệt của thiết bị này. Dữ liệu chưa đồng bộ sang thiết bị khác và chưa được chia sẻ trực tuyến.</div>
 </section>
 
 <section id="mywords" class="view">
@@ -79,28 +79,12 @@ footer{text-align:center;padding:28px;color:#858ba0;font-size:.9rem}
   <div class="panel"><div class="toolbar"><input id="communitySearch" class="searchbox" placeholder="Tìm từ, nghĩa hoặc chủ đề..."><button class="secondary" id="refreshCommunity">↻ Làm mới</button></div><div class="notice">Khi đăng nhập bằng tài khoản thật, bạn có thể chia sẻ từ từ trang “Từ vựng của tôi”. Không chỉnh sửa được từ gốc của người khác.</div><div id="communityList" class="word-list"><div class="empty">Đang tải nội dung cộng đồng…</div></div></div>
 </section>
 
-<section id="auth" class="view">
-  <div class="section-head"><div><h2>💌 Chào mừng bạn!</h2><p>Tạo tài khoản để lưu từ vựng riêng và học cùng cộng đồng.</p></div></div>
-  <div class="grid2">
-    <div class="panel"><h3>Đăng nhập</h3><form id="loginForm"><div class="field"><label>Email</label><input type="email" id="loginEmail" required autocomplete="email" placeholder="ban@email.com"></div><div class="field"><label>Mật khẩu</label><input type="password" id="loginPassword" required autocomplete="current-password" minlength="6" placeholder="Ít nhất 6 ký tự"></div><button class="primary" type="submit">Đăng nhập</button><div id="loginStatus" class="status"></div></form></div>
-    <div class="panel"><h3>Đăng ký tài khoản mới</h3><form id="signupForm"><div class="field"><label>Tên hiển thị</label><input id="signupName" required maxlength="60" autocomplete="name" placeholder="Tên bạn muốn mọi người nhìn thấy"></div><div class="field"><label>Email</label><input type="email" id="signupEmail" required autocomplete="email" placeholder="ban@email.com"></div><div class="field"><label>Mật khẩu</label><input type="password" id="signupPassword" required minlength="6" autocomplete="new-password" placeholder="Ít nhất 6 ký tự"></div><button class="primary" type="submit">Tạo tài khoản miễn phí</button><div id="signupStatus" class="status"></div></form></div>
-  </div>
-  <p class="muted">Bảo mật: mật khẩu được xử lý bởi Supabase Auth, website không lưu mật khẩu dạng chữ thường.</p>
-</section>
 </main>
-<footer>Made with 💗 for every English learner · Học một chút, tiến bộ mỗi ngày 🌷</footer>
+<footer>Made with 💙 for every English learner · Học một chút, tiến bộ mỗi ngày 🌷</footer>
 <script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-/* DÁN thông tin Supabase project của bạn vào hai dòng bên dưới.
-   Không bao giờ đặt service_role key trong website. Chỉ dùng anon/publishable key. */
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
-const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && !SUPABASE_ANON_KEY.includes('YOUR_');
-const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 
 const $ = id => document.getElementById(id);
-let user = null, words = [], communityWords = [], editId = null, cardIndex = 0, showBack = false, studyWords = [], reviewed = 0;
+let words = [], communityWords = [], editId = null, cardIndex = 0, showBack = false, studyWords = [], reviewed = 0;
 const demoKey = 'linhEnglishDemoWordsV1';
 function loadDemo(){try{return JSON.parse(localStorage.getItem(demoKey)||'[]')}catch{return []}}
 function saveDemo(){localStorage.setItem(demoKey,JSON.stringify(words))}
@@ -109,32 +93,18 @@ function setStatus(id,msg){$(id).textContent=msg}
 function activate(view){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===view));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));if(view==='study')prepareStudy();if(view==='community')renderCommunity();if(view==='mywords')renderMine();window.scrollTo({top:0,behavior:'smooth'})}
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.view)));
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.go)));
-$('authOpen').addEventListener('click',()=>activate('auth'));
-$('logoutBtn').addEventListener('click',async()=>{if(supabase)await supabase.auth.signOut();user=null;updateAuth();await refreshWords();activate('home')});
-function updateAuth(){ $('userLabel').textContent=user?(user.user_metadata?.display_name||user.email||'Bạn học'):'Chưa đăng nhập';$('authOpen').hidden=!!user;$('logoutBtn').hidden=!user;$('setupNotice').hidden=configured; }
 async function refreshWords(){
- if(configured && user){
-   const {data,error}=await supabase.from('vocabulary').select('*').eq('owner_id',user.id).order('created_at',{ascending:false});
-   if(error){setStatus('wordStatus','Không tải được dữ liệu: '+error.message);words=[]}else words=data||[];
- }else if(!configured){words=loadDemo()}else{words=[]}
+ words=loadDemo();
  renderMine();updateStats();renderCommunity();
 }
 function wordPayload(){return {word:$('word').value.trim(),meaning_vi:$('meaning').value.trim(),part_of_speech:$('pos').value,phonetic:$('phonetic').value.trim(),example_en:$('example').value.trim(),example_vi:$('exampleVi').value.trim(),topic:$('topic').value.trim(),visibility:$('visibility').value}}
 $('wordForm').addEventListener('submit',async e=>{
  e.preventDefault();const payload=wordPayload();
- if(configured&&!user){setStatus('wordStatus','Bạn cần đăng nhập để lưu từ trên tài khoản.');activate('auth');return}
- if(configured){
-   let result;
-   if(editId) result=await supabase.from('vocabulary').update(payload).eq('id',editId).eq('owner_id',user.id);
-   else result=await supabase.from('vocabulary').insert({...payload,owner_id:user.id});
-   if(result.error){setStatus('wordStatus','Chưa lưu được: '+result.error.message);return}
- }else{
-   if(editId)words=words.map(w=>w.id===editId?{...w,...payload}:w);
-   else words.unshift({id:crypto.randomUUID(),...payload,created_at:new Date().toISOString(),owner_id:'demo'});
-   saveDemo();
- }
+ if(editId)words=words.map(w=>String(w.id)===String(editId)?{...w,...payload}:w);
+ else words.unshift({id:crypto.randomUUID(),...payload,created_at:new Date().toISOString(),owner_id:'demo'});
+ saveDemo();
  $('wordForm').reset();editId=null;$('formTitle').textContent='Thêm một từ mới ✍️';$('saveWord').textContent='Lưu từ vựng';$('cancelEdit').hidden=true;
- setStatus('wordStatus',configured?'Đã lưu từ vựng vào tài khoản của bạn 💗':'Đã lưu trong trình duyệt này. Cấu hình Supabase để chia sẻ và đồng bộ nhiều tài khoản.');
+ setStatus('wordStatus','Đã lưu từ vựng trên trình duyệt này 💙');
  await refreshWords();
 });
 $('cancelEdit').addEventListener('click',()=>{editId=null;$('wordForm').reset();$('formTitle').textContent='Thêm một từ mới ✍️';$('saveWord').textContent='Lưu từ vựng';$('cancelEdit').hidden=true});
@@ -144,11 +114,10 @@ function renderMine(){
  $('myWordList').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editWord(b.dataset.edit));$('myWordList').querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deleteWord(b.dataset.delete));
 }
 function editWord(id){const w=words.find(x=>String(x.id)===String(id));if(!w)return;editId=id;$('word').value=w.word||'';$('meaning').value=w.meaning_vi||'';$('pos').value=w.part_of_speech||'';$('phonetic').value=w.phonetic||'';$('example').value=w.example_en||'';$('exampleVi').value=w.example_vi||'';$('topic').value=w.topic||'';$('visibility').value=w.visibility||'private';$('formTitle').textContent='Chỉnh sửa từ vựng';$('saveWord').textContent='Cập nhật từ';$('cancelEdit').hidden=false;window.scrollTo({top:0,behavior:'smooth'})}
-async function deleteWord(id){if(!confirm('Bạn có chắc muốn xoá từ này không?'))return;if(configured){const {error}=await supabase.from('vocabulary').delete().eq('id',id).eq('owner_id',user.id);if(error){setStatus('wordStatus','Không xoá được: '+error.message);return}}else{words=words.filter(w=>String(w.id)!==String(id));saveDemo()}await refreshWords()}
+async function deleteWord(id){if(!confirm('Bạn có chắc muốn xoá từ này không?'))return;words=words.filter(w=>String(w.id)!==String(id));saveDemo();await refreshWords()}
 $('mySearch').addEventListener('input',renderMine);
 async function loadCommunity(){
- if(configured){const {data,error}=await supabase.from('vocabulary').select('id,word,meaning_vi,part_of_speech,phonetic,example_en,example_vi,topic,owner_id,created_at').eq('visibility','public').order('created_at',{ascending:false}).limit(300);if(error){communityWords=[];setStatus('studyStatus','Không tải được ngân hàng cộng đồng: '+error.message)}else communityWords=data||[]}
- else communityWords=loadDemo().filter(w=>w.visibility==='public');
+ communityWords=loadDemo().filter(w=>w.visibility==='public');
  updateStats();renderCommunity()
 }
 function renderCommunity(){const q=$('communitySearch').value.toLowerCase().trim();const list=communityWords.filter(w=>(w.word+' '+w.meaning_vi+' '+(w.topic||'')).toLowerCase().includes(q));$('communityList').innerHTML=list.length?list.map(w=>`<article class="word-card"><div><h3>${esc(w.word)} ${w.phonetic?`<small class="muted">${esc(w.phonetic)}</small>`:''}</h3><p>${esc(w.meaning_vi)} ${w.part_of_speech?'· '+esc(w.part_of_speech):''}</p>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<span class="tag">${esc(w.topic||'General')}</span><span class="tag">Người học cộng đồng</span></div><div class="word-actions"><button class="secondary tiny" data-learn="${esc(w.id)}">Học từ này</button></div></article>`).join(''):'<div class="empty">Chưa có từ công khai phù hợp. Hãy thêm từ và chọn “Chia sẻ cộng đồng” để đóng góp nhé 🌷</div>';$('communityList').querySelectorAll('[data-learn]').forEach(b=>b.onclick=()=>{studyWords=communityWords.slice();cardIndex=Math.max(0,studyWords.findIndex(w=>String(w.id)===b.dataset.learn));showBack=false;activate('study');renderCard()})}
@@ -159,10 +128,8 @@ $('flashcard').addEventListener('click',()=>{showBack=!showBack;renderCard()});$
 $('prevCard').addEventListener('click',()=>{cardIndex--;showBack=false;renderCard()});$('nextCard').addEventListener('click',()=>{cardIndex++;showBack=false;renderCard()});$('studySource').addEventListener('change',prepareStudy);
 $('shuffleBtn').addEventListener('click',()=>{studyWords.sort(()=>Math.random()-.5);cardIndex=0;showBack=false;renderCard()});
 $('knownBtn').addEventListener('click',()=>{if(!studyWords.length)return;reviewed++;updateStats();setStatus('studyStatus','Tốt lắm! Bạn đã đánh dấu nhớ từ này 🌟');cardIndex=(cardIndex+1)%studyWords.length;showBack=false;renderCard()});
-function updateStats(){$('statWords').textContent=words.length;$('statReviewed').textContent=reviewed;$('statCommunity').textContent=configured?communityWords.length:'Demo'}
-$('loginForm').addEventListener('submit',async e=>{e.preventDefault();if(!configured){setStatus('loginStatus','Website chưa kết nối Supabase nên đăng nhập chưa hoạt động. Hãy cấu hình Supabase URL và public/anon key trong index.html theo README-SETUP.md.');return}const {data,error}=await supabase.auth.signInWithPassword({email:$('loginEmail').value.trim(),password:$('loginPassword').value});setStatus('loginStatus',error?error.message:'Đăng nhập thành công!');if(data.user){user=data.user;updateAuth();await refreshWords();activate('home')}});
-$('signupForm').addEventListener('submit',async e=>{e.preventDefault();if(!configured){setStatus('signupStatus','Bạn đã điền biểu mẫu đúng rồi, nhưng website chưa được kết nối cơ sở dữ liệu nên chưa thể tạo tài khoản thật. Cần thiết lập Supabase URL và public/anon key trong index.html, rồi tải lại website. Làm theo README-SETUP.md nhé.');return}const {data,error}=await supabase.auth.signUp({email:$('signupEmail').value.trim(),password:$('signupPassword').value,options:{data:{display_name:$('signupName').value.trim()}}});setStatus('signupStatus',error?error.message:(data.session?'Tạo tài khoản thành công!':'Đã gửi đăng ký. Nếu bật xác minh email, hãy kiểm tra hộp thư để xác nhận.'));if(data.user){user=data.user;updateAuth();await refreshWords();if(data.session)activate('home')}});
-async function init(){if(configured){const {data}=await supabase.auth.getSession();user=data.session?.user||null;supabase.auth.onAuthStateChange((_event,session)=>{user=session?.user||null;updateAuth();refreshWords()})}updateAuth();await refreshWords();await loadCommunity();prepareStudy()}
+function updateStats(){$('statWords').textContent=words.length;$('statReviewed').textContent=reviewed;$('statCommunity').textContent=communityWords.length}
+async function init(){await refreshWords();await loadCommunity();prepareStudy()}
 init();
 </script>
 </body>
