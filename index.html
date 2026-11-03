@@ -30,7 +30,7 @@ footer{text-align:center;padding:28px;color:#858ba0;font-size:.9rem}
     <button data-view="study">Góc học tập</button>
     <button data-view="community">Cộng đồng</button>
   </nav>
-  <div class="authbar"><span class="pill">🌱 Chế độ học thử</span></div>
+  <div class="authbar"><span class="pill" id="authState">Chưa đăng nhập</span><button class="secondary tiny" id="openAuth">Đăng nhập / Đăng ký</button><button class="danger tiny" id="signOut" hidden>Đăng xuất</button></div>
 </header>
 <main>
 <section id="home" class="view active">
@@ -44,8 +44,9 @@ footer{text-align:center;padding:28px;color:#858ba0;font-size:.9rem}
   </div>
   <div class="stats"><div class="stat"><strong id="statWords">0</strong><span>Từ của bạn</span></div><div class="stat"><strong id="statReviewed">0</strong><span>Lượt ôn tập</span></div><div class="stat"><strong id="statCommunity">—</strong><span>Từ cộng đồng</span></div></div>
   <div class="section-head"><div><h2>Chọn cách học hôm nay 💕</h2><p>Học theo cách phù hợp với bạn.</p></div></div>
-  <div class="features"><article class="feature"><div class="emoji">📚</div><h3>Sổ từ vựng cá nhân</h3><p>Lưu từ, nghĩa tiếng Việt, phiên âm và ví dụ. Từ vựng được lưu trên trình duyệt bạn đang dùng.</p></article><article class="feature"><div class="emoji">🃏</div><h3>Flashcard thông minh</h3><p>Ẩn nghĩa để tự nhớ, lật thẻ để kiểm tra và đánh dấu từ đã thuộc.</p></article><article class="feature"><div class="emoji">🌏</div><h3>Ngân hàng cộng đồng</h3><p>Đánh dấu từ công khai để xem trong mục cộng đồng trên trình duyệt này.</p></article></div>
-  <div class="notice" id="setupNotice">✨ Bạn đang dùng chế độ học thử: từ vựng được lưu trên trình duyệt của thiết bị này. Dữ liệu chưa đồng bộ sang thiết bị khác và chưa được chia sẻ trực tuyến.</div>
+  <div class="features"><article class="feature"><div class="emoji">📚</div><h3>Sổ từ vựng cá nhân</h3><p>Lưu từ, nghĩa tiếng Việt, phiên âm và ví dụ. Từ vựng được lưu an toàn theo tài khoản của bạn.</p></article><article class="feature"><div class="emoji">🃏</div><h3>Flashcard thông minh</h3><p>Ẩn nghĩa để tự nhớ, lật thẻ để kiểm tra và đánh dấu từ đã thuộc.</p></article><article class="feature"><div class="emoji">🌏</div><h3>Ngân hàng cộng đồng</h3><p>Chia sẻ từ công khai để người học khác cùng khám phá.</p></article></div>
+  <div class="notice" id="setupNotice">✨ Hãy cấu hình Supabase và đăng nhập để đồng bộ từ vựng giữa các thiết bị và chia sẻ với cộng đồng.</div>
+  <section class="panel" id="authPanel" hidden style="margin-top:18px"><h2>Tài khoản học tập</h2><p class="muted">Đăng ký hoặc đăng nhập để lưu từ vựng trên cơ sở dữ liệu trực tuyến.</p><div class="grid2"><form id="authForm"><div class="field"><label for="authEmail">Email</label><input id="authEmail" type="email" required autocomplete="email" placeholder="you@example.com"></div><div class="field"><label for="authPassword">Mật khẩu (ít nhất 6 ký tự)</label><input id="authPassword" type="password" required minlength="6" autocomplete="current-password" placeholder="••••••••"></div><div class="toolbar"><button class="primary" type="submit" id="authSubmit">Đăng nhập</button><button class="secondary" type="button" id="toggleAuth">Tạo tài khoản mới</button></div><div class="status" id="authStatus" role="status"></div></form><div class="notice">Khi đăng ký, Supabase có thể gửi email xác minh. Nếu có, hãy mở email và xác nhận trước khi đăng nhập. Dữ liệu riêng tư chỉ tài khoản của bạn được truy cập.</div></div></section>
 </section>
 
 <section id="mywords" class="view">
@@ -82,54 +83,96 @@ footer{text-align:center;padding:28px;color:#858ba0;font-size:.9rem}
 </main>
 <footer>Made with 💙 for every English learner · Học một chút, tiến bộ mỗi ngày 🌷</footer>
 <script type="module">
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 
 const $ = id => document.getElementById(id);
+// Thay hai giá trị này bằng Project URL và publishable/anon key trong Supabase.
+// Chỉ dùng public key ở frontend; tuyệt đối không dùng service_role key.
+const SUPABASE_URL = 'https://jdzzznvhcuwxyludqhwp.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_hdv_CNAZU80LMJ9lZ1kLlg_vLo4puej';
+const configured = SUPABASE_URL.startsWith('https://') && !SUPABASE_URL.includes('YOUR_') && SUPABASE_ANON_KEY && !SUPABASE_ANON_KEY.includes('YOUR_');
+const supabase = configured ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
 let words = [], communityWords = [], editId = null, cardIndex = 0, showBack = false, studyWords = [], reviewed = 0;
-const demoKey = 'linhEnglishDemoWordsV1';
-function loadDemo(){try{return JSON.parse(localStorage.getItem(demoKey)||'[]')}catch{return []}}
-function saveDemo(){localStorage.setItem(demoKey,JSON.stringify(words))}
+let currentUser = null, authMode = 'signin';
 function esc(s=''){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function setStatus(id,msg){$(id).textContent=msg}
 function activate(view){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===view));document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));if(view==='study')prepareStudy();if(view==='community')renderCommunity();if(view==='mywords')renderMine();window.scrollTo({top:0,behavior:'smooth'})}
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.view)));
 document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>activate(b.dataset.go)));
-async function refreshWords(){
- words=loadDemo();
- renderMine();updateStats();renderCommunity();
+
+function showAuth(open=true){$('authPanel').hidden=!open;if(open){activate('home');$('authPanel').scrollIntoView({behavior:'smooth',block:'center'});}}
+$('openAuth').addEventListener('click',()=>showAuth($('authPanel').hidden));
+$('toggleAuth').addEventListener('click',()=>{authMode=authMode==='signin'?'signup':'signin';$('authSubmit').textContent=authMode==='signin'?'Đăng nhập':'Tạo tài khoản';$('toggleAuth').textContent=authMode==='signin'?'Tạo tài khoản mới':'Đã có tài khoản? Đăng nhập';setStatus('authStatus','');});
+$('authForm').addEventListener('submit',async e=>{
+ e.preventDefault(); if(!supabase){setStatus('authStatus','Website chưa được cấu hình Supabase. Hãy điền Project URL và public key trong index.html.');return;}
+ const email=$('authEmail').value.trim(), password=$('authPassword').value;
+ $('authSubmit').disabled=true;setStatus('authStatus','Đang xử lý...');
+ try{
+  if(authMode==='signup'){
+   const {data,error}=await supabase.auth.signUp({email,password});if(error)throw error;
+   setStatus('authStatus',data.session?'Đăng ký thành công! Bạn đã đăng nhập.':'Đăng ký thành công. Hãy kiểm tra email để xác minh tài khoản trước khi đăng nhập.');
+  }else{
+   const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error;
+   setStatus('authStatus','Đăng nhập thành công!');showAuth(false);
+  }
+ }catch(err){setStatus('authStatus','Không thể xác thực: '+err.message)}finally{$('authSubmit').disabled=false;}
+});
+$('signOut').addEventListener('click',async()=>{if(!supabase)return;const {error}=await supabase.auth.signOut();if(error)alert('Đăng xuất chưa thành công: '+error.message);});
+function updateAuthUI(){
+ $('authState').textContent=currentUser?`Đã đăng nhập: ${currentUser.email}`:(configured?'Chưa đăng nhập':'Chưa cấu hình Supabase');
+ $('openAuth').hidden=!!currentUser;$('signOut').hidden=!currentUser;
+ $('setupNotice').textContent=!configured?'⚠️ Website chưa kết nối Supabase. Cần điền Project URL và publishable/anon key, sau đó chạy supabase-schema.sql.':currentUser?'💙 Dữ liệu từ vựng đang được đồng bộ với tài khoản của bạn.':'🌱 Bạn có thể xem từ vựng cộng đồng; hãy đăng nhập để tạo và quản lý từ vựng cá nhân.';
 }
-function wordPayload(){return {word:$('word').value.trim(),meaning_vi:$('meaning').value.trim(),part_of_speech:$('pos').value,phonetic:$('phonetic').value.trim(),example_en:$('example').value.trim(),example_vi:$('exampleVi').value.trim(),topic:$('topic').value.trim(),visibility:$('visibility').value}}
+async function refreshWords(){
+ if(!supabase||!currentUser){words=[];renderMine();updateStats();return;}
+ const {data,error}=await supabase.from('vocabulary').select('*').eq('owner_id',currentUser.id).order('created_at',{ascending:false});
+ if(error){setStatus('wordStatus','Không tải được từ vựng: '+error.message);words=[];}else words=data||[];
+ renderMine();updateStats();
+}
+function wordPayload(){return {word:$('word').value.trim(),meaning_vi:$('meaning').value.trim(),part_of_speech:$('pos').value,phonetic:$('phonetic').value.trim(),example_en:$('example').value.trim(),example_vi:$('exampleVi').value.trim(),topic:$('topic').value.trim(),visibility:$('visibility').value};}
 $('wordForm').addEventListener('submit',async e=>{
- e.preventDefault();const payload=wordPayload();
- if(editId)words=words.map(w=>String(w.id)===String(editId)?{...w,...payload}:w);
- else words.unshift({id:crypto.randomUUID(),...payload,created_at:new Date().toISOString(),owner_id:'demo'});
- saveDemo();
+ e.preventDefault();if(!supabase){setStatus('wordStatus','Website chưa được cấu hình Supabase.');return;}if(!currentUser){setStatus('wordStatus','Bạn cần đăng nhập trước khi lưu từ vựng.');showAuth(true);return;}
+ const payload=wordPayload();let result;
+ if(editId) result=await supabase.from('vocabulary').update(payload).eq('id',editId).eq('owner_id',currentUser.id);
+ else result=await supabase.from('vocabulary').insert({...payload,owner_id:currentUser.id});
+ if(result.error){setStatus('wordStatus','Lưu thất bại: '+result.error.message);return;}
  $('wordForm').reset();editId=null;$('formTitle').textContent='Thêm một từ mới ✍️';$('saveWord').textContent='Lưu từ vựng';$('cancelEdit').hidden=true;
- setStatus('wordStatus','Đã lưu từ vựng trên trình duyệt này 💙');
- await refreshWords();
+ setStatus('wordStatus','Đã lưu dữ liệu vào cơ sở dữ liệu trực tuyến 💙');await refreshWords();await loadCommunity();
 });
 $('cancelEdit').addEventListener('click',()=>{editId=null;$('wordForm').reset();$('formTitle').textContent='Thêm một từ mới ✍️';$('saveWord').textContent='Lưu từ vựng';$('cancelEdit').hidden=true});
 function renderMine(){
  const q=$('mySearch').value.toLowerCase().trim();const filtered=words.filter(w=>(w.word+' '+w.meaning_vi+' '+(w.topic||'')).toLowerCase().includes(q));
- $('myWordList').innerHTML=filtered.length?filtered.map(w=>`<article class="word-card"><div><h3>${esc(w.word)} ${w.phonetic?`<small class="muted">${esc(w.phonetic)}</small>`:''}</h3><p>${esc(w.meaning_vi)} ${w.part_of_speech?`· ${esc(w.part_of_speech)}`:''}</p>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<span class="tag">${w.visibility==='public'?'🌏 Công khai':'🔒 Riêng tư'}</span>${w.topic?`<span class="tag">${esc(w.topic)}</span>`:''}</div><div class="word-actions"><button class="secondary tiny" data-edit="${esc(w.id)}">Sửa</button><button class="danger tiny" data-delete="${esc(w.id)}">Xoá</button></div></article>`).join(''):'<div class="empty">Chưa có từ nào phù hợp. Thêm từ đầu tiên nhé 🌱</div>';
+ $('myWordList').innerHTML=!currentUser?'<div class="empty">Đăng nhập để xem và quản lý từ vựng cá nhân.</div>':filtered.length?filtered.map(w=>`<article class="word-card"><div><h3>${esc(w.word)} ${w.phonetic?`<small class="muted">${esc(w.phonetic)}</small>`:''}</h3><p>${esc(w.meaning_vi)} ${w.part_of_speech?`· ${esc(w.part_of_speech)}`:''}</p>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<span class="tag">${w.visibility==='public'?'🌏 Công khai':'🔒 Riêng tư'}</span>${w.topic?`<span class="tag">${esc(w.topic)}</span>`:''}</div><div class="word-actions"><button class="secondary tiny" data-edit="${esc(w.id)}">Sửa</button><button class="danger tiny" data-delete="${esc(w.id)}">Xoá</button></div></article>`).join(''):'<div class="empty">Chưa có từ nào phù hợp. Thêm từ đầu tiên nhé 🌱</div>';
  $('myWordList').querySelectorAll('[data-edit]').forEach(b=>b.onclick=()=>editWord(b.dataset.edit));$('myWordList').querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>deleteWord(b.dataset.delete));
 }
-function editWord(id){const w=words.find(x=>String(x.id)===String(id));if(!w)return;editId=id;$('word').value=w.word||'';$('meaning').value=w.meaning_vi||'';$('pos').value=w.part_of_speech||'';$('phonetic').value=w.phonetic||'';$('example').value=w.example_en||'';$('exampleVi').value=w.example_vi||'';$('topic').value=w.topic||'';$('visibility').value=w.visibility||'private';$('formTitle').textContent='Chỉnh sửa từ vựng';$('saveWord').textContent='Cập nhật từ';$('cancelEdit').hidden=false;window.scrollTo({top:0,behavior:'smooth'})}
-async function deleteWord(id){if(!confirm('Bạn có chắc muốn xoá từ này không?'))return;words=words.filter(w=>String(w.id)!==String(id));saveDemo();await refreshWords()}
+function editWord(id){const w=words.find(x=>String(x.id)===String(id));if(!w)return;editId=id;$('word').value=w.word||'';$('meaning').value=w.meaning_vi||'';$('pos').value=w.part_of_speech||'';$('phonetic').value=w.phonetic||'';$('example').value=w.example_en||'';$('exampleVi').value=w.example_vi||'';$('topic').value=w.topic||'';$('visibility').value=w.visibility||'private';$('formTitle').textContent='Chỉnh sửa từ vựng';$('saveWord').textContent='Cập nhật từ';$('cancelEdit').hidden=false;window.scrollTo({top:0,behavior:'smooth'});}
+async function deleteWord(id){if(!confirm('Bạn có chắc muốn xoá từ này không?'))return;const {error}=await supabase.from('vocabulary').delete().eq('id',id).eq('owner_id',currentUser.id);if(error){alert('Xoá thất bại: '+error.message);return;}await refreshWords();await loadCommunity();}
 $('mySearch').addEventListener('input',renderMine);
 async function loadCommunity(){
- communityWords=loadDemo().filter(w=>w.visibility==='public');
- updateStats();renderCommunity()
+ if(!supabase){communityWords=[];renderCommunity();updateStats();return;}
+ const {data,error}=await supabase.from('vocabulary').select('*').eq('visibility','public').order('created_at',{ascending:false}).limit(200);
+ if(error){$('communityList').innerHTML=`<div class="empty">Không tải được dữ liệu cộng đồng: ${esc(error.message)}</div>`;communityWords=[];}else communityWords=data||[];
+ updateStats();renderCommunity();
 }
-function renderCommunity(){const q=$('communitySearch').value.toLowerCase().trim();const list=communityWords.filter(w=>(w.word+' '+w.meaning_vi+' '+(w.topic||'')).toLowerCase().includes(q));$('communityList').innerHTML=list.length?list.map(w=>`<article class="word-card"><div><h3>${esc(w.word)} ${w.phonetic?`<small class="muted">${esc(w.phonetic)}</small>`:''}</h3><p>${esc(w.meaning_vi)} ${w.part_of_speech?'· '+esc(w.part_of_speech):''}</p>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<span class="tag">${esc(w.topic||'General')}</span><span class="tag">Người học cộng đồng</span></div><div class="word-actions"><button class="secondary tiny" data-learn="${esc(w.id)}">Học từ này</button></div></article>`).join(''):'<div class="empty">Chưa có từ công khai phù hợp. Hãy thêm từ và chọn “Chia sẻ cộng đồng” để đóng góp nhé 🌷</div>';$('communityList').querySelectorAll('[data-learn]').forEach(b=>b.onclick=()=>{studyWords=communityWords.slice();cardIndex=Math.max(0,studyWords.findIndex(w=>String(w.id)===b.dataset.learn));showBack=false;activate('study');renderCard()})}
+function renderCommunity(){const q=$('communitySearch').value.toLowerCase().trim();const list=communityWords.filter(w=>(w.word+' '+w.meaning_vi+' '+(w.topic||'')).toLowerCase().includes(q));$('communityList').innerHTML=list.length?list.map(w=>`<article class="word-card"><div><h3>${esc(w.word)} ${w.phonetic?`<small class="muted">${esc(w.phonetic)}</small>`:''}</h3><p>${esc(w.meaning_vi)} ${w.part_of_speech?'· '+esc(w.part_of_speech):''}</p>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<span class="tag">${esc(w.topic||'General')}</span><span class="tag">Chia sẻ cộng đồng</span></div><div class="word-actions"><button class="secondary tiny" data-learn="${esc(w.id)}">Học từ này</button><button class="primary tiny" data-copy="${esc(w.id)}">Lưu vào từ của tôi</button></div></article>`).join(''):'<div class="empty">Chưa có từ công khai phù hợp. Hãy quay lại sau nhé 🌷</div>';
+ $('communityList').querySelectorAll('[data-learn]').forEach(b=>b.onclick=()=>{studyWords=communityWords.slice();cardIndex=Math.max(0,studyWords.findIndex(w=>String(w.id)===b.dataset.learn));showBack=false;activate('study');renderCard()});
+ $('communityList').querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copyCommunityWord(b.dataset.copy));}
+async function copyCommunityWord(id){if(!currentUser){alert('Bạn cần đăng nhập để lưu từ cộng đồng.');showAuth(true);return;}const w=communityWords.find(x=>String(x.id)===String(id));if(!w)return;const {error}=await supabase.from('vocabulary').insert({owner_id:currentUser.id,word:w.word,meaning_vi:w.meaning_vi,part_of_speech:w.part_of_speech||'',phonetic:w.phonetic||'',example_en:w.example_en||'',example_vi:w.example_vi||'',topic:w.topic||'',visibility:'private'});if(error){alert('Không lưu được bản sao: '+error.message);return;}alert('Đã lưu bản sao vào từ vựng cá nhân!');await refreshWords();}
 $('communitySearch').addEventListener('input',renderCommunity);$('refreshCommunity').addEventListener('click',loadCommunity);
-function prepareStudy(){studyWords=$('studySource').value==='community'?communityWords.slice():words.slice();cardIndex=0;showBack=false;renderCard()}
-function renderCard(){const card=$('flashcard');if(!studyWords.length){card.innerHTML='<div><p class="muted">Thêm từ vựng hoặc chọn ngân hàng cộng đồng nhé</p><h2>Ready to learn? 🌱</h2></div>';$('cardCounter').textContent='0 / 0';return}if(cardIndex>=studyWords.length)cardIndex=0;if(cardIndex<0)cardIndex=studyWords.length-1;const w=studyWords[cardIndex];card.innerHTML=showBack?`<div><p class="muted">${esc(w.word)}</p><h2>${esc(w.meaning_vi)}</h2>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<p class="muted">Nhấn thẻ để quay lại từ</p></div>`:`<div><p class="muted">Từ ${cardIndex+1} · Nhấn để lật thẻ</p><h2>${esc(w.word)}</h2>${w.phonetic?`<p>${esc(w.phonetic)}</p>`:''}<span class="tag">${esc(w.part_of_speech||w.topic||'Vocabulary')}</span></div>`;$('cardCounter').textContent=`${cardIndex+1} / ${studyWords.length}`}
+function prepareStudy(){studyWords=$('studySource').value==='community'?communityWords.slice():words.slice();cardIndex=0;showBack=false;renderCard();}
+function renderCard(){const card=$('flashcard');if(!studyWords.length){card.innerHTML='<div><p class="muted">Thêm từ vựng hoặc chọn ngân hàng cộng đồng nhé</p><h2>Ready to learn? 🌱</h2></div>';$('cardCounter').textContent='0 / 0';return;}if(cardIndex>=studyWords.length)cardIndex=0;if(cardIndex<0)cardIndex=studyWords.length-1;const w=studyWords[cardIndex];card.innerHTML=showBack?`<div><p class="muted">${esc(w.word)}</p><h2>${esc(w.meaning_vi)}</h2>${w.example_en?`<p><i>${esc(w.example_en)}</i></p>`:''}${w.example_vi?`<p>${esc(w.example_vi)}</p>`:''}<p class="muted">Nhấn thẻ để quay lại từ</p></div>`:`<div><p class="muted">Từ ${cardIndex+1} · Nhấn để lật thẻ</p><h2>${esc(w.word)}</h2>${w.phonetic?`<p>${esc(w.phonetic)}</p>`:''}<span class="tag">${esc(w.part_of_speech||w.topic||'Vocabulary')}</span></div>`;$('cardCounter').textContent=`${cardIndex+1} / ${studyWords.length}`;}
 $('flashcard').addEventListener('click',()=>{showBack=!showBack;renderCard()});$('flashcard').addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showBack=!showBack;renderCard()}});
 $('prevCard').addEventListener('click',()=>{cardIndex--;showBack=false;renderCard()});$('nextCard').addEventListener('click',()=>{cardIndex++;showBack=false;renderCard()});$('studySource').addEventListener('change',prepareStudy);
 $('shuffleBtn').addEventListener('click',()=>{studyWords.sort(()=>Math.random()-.5);cardIndex=0;showBack=false;renderCard()});
 $('knownBtn').addEventListener('click',()=>{if(!studyWords.length)return;reviewed++;updateStats();setStatus('studyStatus','Tốt lắm! Bạn đã đánh dấu nhớ từ này 🌟');cardIndex=(cardIndex+1)%studyWords.length;showBack=false;renderCard()});
-function updateStats(){$('statWords').textContent=words.length;$('statReviewed').textContent=reviewed;$('statCommunity').textContent=communityWords.length}
-async function init(){await refreshWords();await loadCommunity();prepareStudy()}
+function updateStats(){$('statWords').textContent=words.length;$('statReviewed').textContent=reviewed;$('statCommunity').textContent=communityWords.length;}
+async function init(){
+ if(!configured){updateAuthUI();await refreshWords();await loadCommunity();prepareStudy();return;}
+ const {data:{session}}=await supabase.auth.getSession();currentUser=session?.user||null;updateAuthUI();
+ supabase.auth.onAuthStateChange((_event,session)=>{currentUser=session?.user||null;updateAuthUI();setTimeout(async()=>{await refreshWords();await loadCommunity();prepareStudy();},0);});
+ await refreshWords();await loadCommunity();prepareStudy();
+}
 init();
 </script>
 </body>
